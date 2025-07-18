@@ -1,11 +1,9 @@
-import { LandingPage } from "@/components/Landing";
-import { Divide } from "lucide-react";
-import Image from "next/image";
+import NavbarDemo from "@/components/Header";
 
 export default function Home() {
   return (
-    <>
-      <LandingPage/>
-    </>
+    <div className="flex flex-col justify-center items-center ">
+      <NavbarDemo/>
+    </div>
   );
 }
