@@ -31,7 +31,7 @@ export default function NavbarDemo() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="relative w-full">
+    <div className="fixed top-1 w-full z-100">
       <Navbar>
         
         <NavBody>

@@ -2,6 +2,7 @@
 import React from 'react'
 import Card from '@/components/Card';
 import {motion } from 'motion/react'
+import NavbarDemo from '@/components/Header';
 
 const page = () => {
     const team =[
@@ -80,6 +81,7 @@ const page = () => {
 
   return (
     <div className='bg-[#101010]'>
+      <NavbarDemo/>
       
       <div className="py-16 bg-[#101010]">
         <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
