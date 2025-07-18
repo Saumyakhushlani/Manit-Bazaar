@@ -11,7 +11,9 @@
   "dependencies": {
     "@tabler/icons-react": "^3.34.0",
     "clsx": "^2.1.1",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.525.0",
+    "mongoose": "^8.16.4",
     "motion": "^12.23.6",
     "next": "15.4.1",
     "react": "19.1.0",
