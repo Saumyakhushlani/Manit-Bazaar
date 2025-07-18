@@ -6,7 +6,7 @@ export function LandingPage() {
     <BackgroundBeamsWithCollision>
       <div className="flex flex-col justify-center items-center">
         <div>
-          <h2 className="text-4xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black">
+          <h2 className="text-4xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black ">
             <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
               <span className="tracking-wider uppercase">Manit Bazaar</span>
             </div>
