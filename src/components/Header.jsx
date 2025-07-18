@@ -23,8 +23,8 @@ export default function NavbarDemo() {
       link: "/products",
     },
     {
-      name: "Team",
-      link: "/team",
+      name: "About",
+      link: "/about",
     },
   ];
 
