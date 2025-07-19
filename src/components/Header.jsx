@@ -20,7 +20,7 @@ export default function NavbarDemo() {
     },
     {
       name: "Products",
-      link: "/products",
+      link: "/product",
     },
     {
       name: "About",
@@ -31,7 +31,7 @@ export default function NavbarDemo() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="fixed top-1 w-full z-100">
+    <div className="fixed top-1 w-full z-100 ">
       <Navbar>
         
         <NavBody>
