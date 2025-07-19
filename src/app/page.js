@@ -8,11 +8,11 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center ">
         <NavbarDemo />
         <LandingPage />
+      <div className="min-h-screen bg-zinc-950 text-white py-10 px-4">
+        <ItemForm/>
+      </div> 
         <Footer />
       </div>
-      {/* <div className="min-h-screen bg-zinc-950 text-white py-10 px-4">
-        <ItemForm/>
-      </div> */}
     </>
   );
 }

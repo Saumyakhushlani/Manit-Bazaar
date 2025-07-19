@@ -4,7 +4,7 @@ import Aurora from "../Aurora";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col gap-3 items-center justify-center p-4 nutral-950">
+    <footer className="flex flex-col gap-3 items-center justify-center p-4 nutral-950 w-full">
       <div className="p-1 bg-clip-text text-transparent ">
         <span className="font-bold lg:text-5xl text-3xl text-center text-white">
           MANIT BAZAAR
