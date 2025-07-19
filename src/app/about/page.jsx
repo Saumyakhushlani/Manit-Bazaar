@@ -92,7 +92,7 @@ const page = () => {
             <span className="font-semibold text-purple-600">MANIT Bazzar</span> is the official
             student-driven marketplace for <span className="font-medium">MANIT Bhopal</span>.
             Here you can <span className="text-purple-600">buy</span> and <span className="text-purple-600">sell</span> anything from
-            books, notes, gadgets, and hostel essentials to furniture and hobby gear –
+            books, notes, gadgets, and hostel essentials to furniture and hobby gear -
             all within the safety of our campus community.
           </p>
           <p className="mt-6 text-neutral-100 text-lg sm:text-xl max-w-3xl">
