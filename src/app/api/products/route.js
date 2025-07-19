@@ -185,3 +185,34 @@ export async function POST(req) {
     return NextResponse.json({ message: error }, { status: 500 });
   }
 }
+
+
+export async function DELETE(req) {
+  try {
+    const productId = await req.nextUrl.searchParams.get("id");
+    
+    if (!productId) {
+      return NextResponse.json(
+        { message: "Product ID is required" },
+        { status: 400 }
+      );
+    }
+    
+    const deletedProduct = await Products.findByIdAndDelete(productId);
+    
+    if (!deletedProduct) {
+      return NextResponse.json(
+        { message: "Product not found" },
+        { status: 404 }
+      );
+    }
+    
+    return NextResponse.json(
+      { message: "Product deleted successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log("Failed in deleting product: ", error);
+    return NextResponse.json({ message: error }, { status: 500 });
+  }
+}
