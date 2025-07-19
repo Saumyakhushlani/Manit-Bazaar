@@ -2,6 +2,7 @@ import NavbarDemo from "@/components/Header";
 import ItemForm from "@/components/ItemForm";
 import { LandingPage } from "@/components/Landing";
 import Rules from "@/components/Rules";
+import Footer from "@/components/ui/footer";
 
 export default function Home() {
   return (
@@ -10,10 +11,8 @@ export default function Home() {
         <NavbarDemo />
         <LandingPage />
         <Rules/>
-      </div>
-      {/* <div className="min-h-screen bg-zinc-950 text-white py-10 px-4">
-        <ItemForm/>
-      </div> */}
+        <Footer />
+      </div>    
     </>
   );
 }
