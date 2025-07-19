@@ -73,8 +73,8 @@ const ProductCard = ({ data }) => {
                             </div>
                             <div className='md:p-6 p-2 px-6'>
                                 <div className='text-5xl text-purple-400 font-semibold'>Contact</div>
-                                <button className='bg-green-500 text-white flex gap-2 justify-center items-center w-full py-2 rounded-lg text-xl my-3'><FaWhatsapp />WhatsApp</button>
-                                <button className='bg-red-500 text-white flex gap-2 justify-center items-center w-full py-2 rounded-lg text-xl'><MdOutlineMail />Mail</button>
+                                <button className='bg-green-500 text-white flex gap-2 justify-center items-center w-full md:w-1/4 py-2 rounded-lg text-xl my-3'><FaWhatsapp />WhatsApp</button>
+                                <button className='bg-red-500 text-white flex gap-2 justify-center items-center w-full md:w-1/4 py-2 rounded-lg text-xl'><MdOutlineMail />Mail</button>
                             </div>
                         </motion.div>
                     </motion.div>
