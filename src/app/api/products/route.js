@@ -1,0 +1,186 @@
+/**
+ * @swagger
+ * /api/products:
+ *   post:
+ *     summary: Retrieves products with related user and category details
+ *     description: Fetches products with optional filtering by user ID. Includes user and category information through MongoDB aggregation.
+ *     parameters:
+ *       - in: query
+ *         name: id
+ *         schema:
+ *           type: string
+ *         description: Optional user ID to filter products by creator
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved products
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 products:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       title:
+ *                         type: string
+ *                       description:
+ *                         type: string
+ *                       price:
+ *                         type: number
+ *                       category:
+ *                         type: string
+ *                       userId:
+ *                         type: string
+ *                       images:
+ *                         type: array
+ *                       createdAt:
+ *                         type: string
+ *                         format: date-time
+ *                       updatedAt:
+ *                         type: string
+ *                         format: date-time
+ *                       userDetails:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *                           email:
+ *                             type: string
+ *                           profilePhoto:
+ *                             type: string
+ *                           phone:
+ *                             type: string
+ *                       categoryDetails:
+ *                         type: object
+ *                         properties:
+ *                           name:
+ *                             type: string
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ */
+
+/**
+ * API endpoint to fetch products with optional filtering by user ID
+ * 
+ * @route POST /api/products
+ * 
+ * @param {Object} req - The HTTP request object from Next.js
+ * @param {URL} req.nextURL - The parsed URL object containing query parameters
+ * @param {Object} req.nextURL.searchParams - Query parameters from the request URL
+ * @param {string} [req.nextURL.searchParams.id] - Optional user ID to filter products by
+ * 
+ * @returns {Object} Response object
+ * @returns {boolean} Response.success - Indicates if the request was successful
+ * @returns {Array<Object>} Response.products - Array of product objects with the following structure:
+ * @returns {string} Response.products[].title - Product title
+ * @returns {string} Response.products[].description - Product description
+ * @returns {number} Response.products[].price - Product price
+ * @returns {string} Response.products[].category - Category ID
+ * @returns {string} Response.products[].userId - User ID of the seller
+ * @returns {Array<string>} Response.products[].images - Array of image URLs
+ * @returns {Date} Response.products[].createdAt - Creation timestamp
+ * @returns {Date} Response.products[].updatedAt - Last update timestamp
+ * @returns {Object} Response.products[].userDetails - Seller information
+ * @returns {string} Response.products[].userDetails.name - Seller name
+ * @returns {string} Response.products[].userDetails.email - Seller email
+ * @returns {string} Response.products[].userDetails.profilePhoto - Seller profile photo URL
+ * @returns {string} Response.products[].userDetails.phone - Seller phone number
+ * @returns {Object} Response.products[].categoryDetails - Category information
+ * @returns {string} Response.products[].categoryDetails.name - Category name
+ * 
+ * @throws {Object} Error response with status 500 if server encounters an error
+*/
+
+import { NextResponse } from "next/server";
+import dbconnect from "@/DB/dbconfig";
+import User from "@/Models/user";
+
+dbconnect();
+
+export async function POST(req) {
+    try {
+        let pipeline = []
+        // fetching the userId from the request
+        const {id} = await req.nextURL.searchParams.get("id");
+        
+        if(id){
+            // If id is provided, filter products by userId
+            pipeline.push({
+                $match: { userId: id }
+            });
+        }
+
+        // If no id is provided, fetch all products
+        pipeline.push({
+            $lookup: {
+                from: "users",
+                localField: "userId",
+                foreignField: "_id",
+                pipeline:[{
+                    $project: {
+                        name: 1,
+                        email: 1,
+                        profilePhoto: 1,
+                        phone: 1,
+                    }
+                }],
+                as: "userDetails"
+            }
+        });
+
+        pipeline.push({
+          $lookup: {
+            from: "categories",
+            localField: "category",
+            foreignField: "_id",
+            pipeline: [
+              {
+                $project: {
+                  name: 1,
+                },
+              },
+            ],
+            as: "categoryDetails",
+          },
+        });
+        
+        pipeline.push({
+            $project:{
+                title: 1,
+                description: 1,
+                price: 1,
+                category: 1,
+                userId: 1,
+                images: 1,
+                createdAt: 1,
+                updatedAt: 1,
+                userDetails: { $arrayElemAt: ["$userDetails", 0] },
+                categoryDetails: { $arrayElemAt: ["$categoryDetails", 0] }
+            }
+        })
+
+
+        const products = await User.aggregate(pipeline)
+
+        return NextResponse.json({
+            success: true,
+            products: products
+        }, { status: 200 });
+
+    } catch (error) {
+        console.log("Failed in fetching products: ", error);
+        return NextResponse.json({message: error}, {status: 500})
+    }
+}
