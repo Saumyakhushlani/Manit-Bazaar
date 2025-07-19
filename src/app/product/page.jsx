@@ -66,21 +66,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import {
-  FiChevronRight,
-  FiBox
-} from 'react-icons/fi';
-import {
-  MdOutlineAcUnit,
-  MdPhoneIphone,
-  MdOutlineMenuBook,
-  MdSportsSoccer
-} from 'react-icons/md';
-import {
-  FaBicycle,
-  FaLaptopCode,
-  FaEllipsisH
-} from 'react-icons/fa';
+import {FiChevronRight,FiBox} from 'react-icons/fi';
+import {MdOutlineAcUnit,MdPhoneIphone,MdOutlineMenuBook,MdSportsSoccer} from 'react-icons/md';
+import {FaBicycle,FaLaptopCode,FaEllipsisH} from 'react-icons/fa';
 
 const categories = [
   { name: 'All Items', icon: <FiBox size={50} />, link: '/all' },

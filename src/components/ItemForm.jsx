@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 
 const categories = ["Books","Electronics","Furniture","Stationery","Clothing","Others"];
 
@@ -21,13 +22,34 @@ export default function ItemForm() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // preventing page reload
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // handle the backend submission
-    console.log("Submitted:", formData);
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("description", formData.description);
+    data.append("price", formData.price);
+    data.append("category", formData.category);
+    data.append("image", formData.image); //  File object
 
-    // we will clear form after submission
+    try {
+      const res = await axios.post("/api/upload", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (res.data.success) {
+        alert("Product added!");
+      } else {
+        alert("Failed to add item");
+      }
+    } catch (error) {
+      console.error("Error uploading product:", error);
+      alert("Upload failed");
+    }
+
+    // Reset form
     setFormData({
       image: null,
       name: "",
@@ -36,9 +58,10 @@ export default function ItemForm() {
       price: "",
     });
 
-    //clear input file
+    // Clear file input manually
     document.getElementById("imageUpload").value = null;
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
