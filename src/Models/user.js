@@ -29,15 +29,15 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-user.methods.generateRefreshToken = async () => {
+userSchema.methods.generateRefreshToken = function () {
   const token = jwt.sign(
     { id: this._id, name: this.name },
-    `${process.env.REFRESH_TOKEN_SECRET}`
+    process.env.REFRESH_TOKEN_SECRET
   );
 
-  return token
+  return token;
 };
 
-const user = mongoose.models.user || mongoose.model("user",userSchema );
+const user = mongoose.models.user || mongoose.model("user", userSchema);
 
 export default user;

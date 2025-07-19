@@ -1,5 +1,5 @@
 import React from "react";
-
+import { ArrowRight } from 'lucide-react'
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
 export function LandingPage() {
@@ -21,6 +21,14 @@ export function LandingPage() {
             life by trading with trusted peers!
           </p>
         </div>
+        <button
+          className="mt-6 flex items-center gap-x-2 bg-gradient-to-r from-purple-400 via-violet-400 to-pink-400 
+             rounded-lg text-black px-6 py-3 font-semibold text-lg 
+             shadow-md hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out"
+        >
+          Explore Products
+          <ArrowRight className="w-5 h-5" />
+        </button>
       </div>
     </BackgroundBeamsWithCollision>
   );
