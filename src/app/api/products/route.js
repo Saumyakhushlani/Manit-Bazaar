@@ -73,14 +73,14 @@
 
 /**
  * API endpoint to fetch products with optional filtering by user ID
- * 
+ *
  * @route POST /api/products
- * 
+ *
  * @param {Object} req - The HTTP request object from Next.js
  * @param {URL} req.nextURL - The parsed URL object containing query parameters
  * @param {Object} req.nextURL.searchParams - Query parameters from the request URL
  * @param {string} [req.nextURL.searchParams.id] - Optional user ID to filter products by
- * 
+ *
  * @returns {Object} Response object
  * @returns {boolean} Response.success - Indicates if the request was successful
  * @returns {Array<Object>} Response.products - Array of product objects with the following structure:
@@ -99,88 +99,89 @@
  * @returns {string} Response.products[].userDetails.phone - Seller phone number
  * @returns {Object} Response.products[].categoryDetails - Category information
  * @returns {string} Response.products[].categoryDetails.name - Category name
- * 
+ *
  * @throws {Object} Error response with status 500 if server encounters an error
-*/
+ */
 
 import { NextResponse } from "next/server";
 import dbconnect from "@/DB/dbconfig";
-import User from "@/Models/user";
+import Products from "@/Models/product";
 
 dbconnect();
 
 export async function POST(req) {
-    try {
-        let pipeline = []
-        // fetching the userId from the request
-        const {id} = await req.nextURL.searchParams.get("id");
-        
-        if(id){
-            // If id is provided, filter products by userId
-            pipeline.push({
-                $match: { userId: id }
-            });
-        }
+  console.log("Fetching products...");
+  try {
+    let pipeline = [];
+    // fetching the userId from the request
+    const id = await req.nextURL?.searchParams?.get("id");
 
-        // If no id is provided, fetch all products
-        pipeline.push({
-            $lookup: {
-                from: "users",
-                localField: "userId",
-                foreignField: "_id",
-                pipeline:[{
-                    $project: {
-                        name: 1,
-                        email: 1,
-                        profilePhoto: 1,
-                        phone: 1,
-                    }
-                }],
-                as: "userDetails"
-            }
-        });
-
-        pipeline.push({
-          $lookup: {
-            from: "categories",
-            localField: "category",
-            foreignField: "_id",
-            pipeline: [
-              {
-                $project: {
-                  name: 1,
-                },
-              },
-            ],
-            as: "categoryDetails",
-          },
-        });
-        
-        pipeline.push({
-            $project:{
-                title: 1,
-                description: 1,
-                price: 1,
-                category: 1,
-                userId: 1,
-                images: 1,
-                createdAt: 1,
-                updatedAt: 1,
-                userDetails: { $arrayElemAt: ["$userDetails", 0] },
-                categoryDetails: { $arrayElemAt: ["$categoryDetails", 0] }
-            }
-        })
-
-
-        const products = await User.aggregate(pipeline)
-
-        return NextResponse.json({
-            success: true,
-            products: products
-        }, { status: 200 });
-
-    } catch (error) {
-        console.log("Failed in fetching products: ", error);
-        return NextResponse.json({message: error}, {status: 500})
+    if (id) {
+      // If id is provided, filter products by userId
+      pipeline.push({
+        $match: { owner: id },
+      });
     }
+
+    // If no id is provided, fetch all products
+    pipeline.push({
+      $lookup: {
+        from: "users",
+        localField: "owner",
+        foreignField: "_id",
+        pipeline: [
+          {
+            $project: {
+              name: 1,
+              email: 1,
+              profilePhoto: 1,
+              phone: 1,
+            },
+          },
+        ],
+        as: "ownerDetails",
+      },
+    });
+
+    pipeline.push({
+      $lookup: {
+        from: "category",
+        localField: "category",
+        foreignField: "_id",
+        pipeline: [
+          {
+            $project: {
+              name: 1,
+            },
+          },
+        ],
+        as: "categoryDetails",
+      },
+    });
+
+    pipeline.push({
+      $project: {
+        name: 1,
+        description: 1,
+        price: 1,
+        category: 1,
+        image: 1,
+        ownerDetails: { $arrayElemAt: ["$ownerDetails", 0] },
+        categoryDetails: { $arrayElemAt: ["$categoryDetails", 0] },
+      },
+    });
+
+    const products = await Products.aggregate(pipeline);
+
+    return NextResponse.json(
+      {
+        success: true,
+        products: products,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log("Failed in fetching products: ", error);
+    return NextResponse.json({ message: error }, { status: 500 });
+  }
 }
