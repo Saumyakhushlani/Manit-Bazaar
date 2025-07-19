@@ -17,13 +17,13 @@ const Rules = () => {
     ];
 
     return (
-        <div className='bg-neutral-950 py-15 px-10 flex flex-col justify-center items-center'>
-            <motion.div className='text-purple-500 text-6xl mb-5 font-semibold'
+        <div className='bg-neutral-950 py-15 md:px-10 px-5 flex flex-col justify-center items-center'>
+            <motion.div className='text-purple-500 md:text-6xl text-5xl mb-5 font-semibold'
                 initial={{ opacity: 0, y: -50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
             ><span className='text-white'>User</span> Policy</motion.div>
-            <motion.div className='text-white text-2xl max-w-2xl text-center mb-10'
+            <motion.div className='text-white md:text-2xl text-xl md:max-w-2xl text-center md:mb-10 mb-4'
                 initial={{ opacity: 0, y: -50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 ,delay:0.2}}
@@ -39,7 +39,7 @@ const Rules = () => {
                         whileInView={{x:0,opacity:1}}
                         initial={{x:-200,opacity:0}}
                         transition={{duration:0.4,delay:e.sno*0.1}}
-                        className="text-white text-2xl text-left"
+                        className="text-white md:text-2xl text-xl md:text-left text-center"
                         dangerouslySetInnerHTML={{ __html: `${e.sno}. ${e.content}` }}
                     />
                 </div>
