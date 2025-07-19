@@ -22,7 +22,7 @@ const Footer = () => {
           </li>
           <li>
             <Link
-              href="/products"
+              href="/product"
               className="text-purple-400 hover:text-white cursor-pointer"
             >
               Product

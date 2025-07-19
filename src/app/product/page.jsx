@@ -71,14 +71,14 @@ import {MdOutlineAcUnit,MdPhoneIphone,MdOutlineMenuBook,MdSportsSoccer} from 're
 import {FaBicycle,FaLaptopCode,FaEllipsisH} from 'react-icons/fa';
 
 const categories = [
-  { name: 'All Items', icon: <FiBox size={50} />, link: '/all' },
-  { name: 'Coolers', icon: <MdOutlineAcUnit size={50} />, link: '/coolers' },
-  { name: 'Cycles', icon: <FaBicycle size={50} />, link: '/cycles' },
-  { name: 'Mobiles', icon: <MdPhoneIphone size={50} />, link: '/mobiles' },
-  { name: 'PC & Laptops', icon: <FaLaptopCode size={50} />, link: '/pcs' },
-  { name: 'Study Material', icon: <MdOutlineMenuBook size={50} />, link: '/study-material' },
-  { name: 'Sports', icon: <MdSportsSoccer size={50} />, link: '/sports' },
-  { name: 'Others', icon: <FaEllipsisH size={50} />, link: '/others' },
+  { name: 'All Items', icon: <FiBox size={50} />, link: '/items/all' },
+  { name: 'Coolers', icon: <MdOutlineAcUnit size={50} />, link: '/items/coolers' },
+  { name: 'Cycles', icon: <FaBicycle size={50} />, link: '/items/cycles' },
+  { name: 'Mobiles', icon: <MdPhoneIphone size={50} />, link: '/items/mobiles' },
+  { name: 'PC & Laptops', icon: <FaLaptopCode size={50} />, link: '/items/pcs' },
+  { name: 'Study Material', icon: <MdOutlineMenuBook size={50} />, link: '/items/study-material' },
+  { name: 'Sports', icon: <MdSportsSoccer size={50} />, link: '/items/sports' },
+  { name: 'Others', icon: <FaEllipsisH size={50} />, link: '/items/others' },
 ];
 
 export default function CategoryPage() {
