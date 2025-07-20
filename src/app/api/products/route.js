@@ -249,7 +249,7 @@ export async function POST(req) {
       var newCategory = await Category.create({
         name: category.toUpperCase().trim(),
       });
-      category = newCategory._id;
+      categoryId = newCategory._id;
     }
 
     const newProduct = await Products.create({

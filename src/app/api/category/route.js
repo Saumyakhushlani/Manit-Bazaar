@@ -16,20 +16,38 @@ export async function GET(req) {
         { status: 400 }
       );
     }
-    const category = await Category.findOne({ name: categoryName });
     
-    
-    if (!category) {
-        if(categoryName.toUpperCase() in ["PC & LAPTOPS", "COOLER", "ALL ITEMS", "CYCLES", "MOBILES", "STUDY MATERIAL", "SPORTS", "OTHERS"]){
-            return NextResponse.json({message: "No Product Found in this category"}, {status: 201})
-        }
-        return NextResponse.json(
-            { error: "Category not found" },
-            { status: 404 }
-        );
+    if (categoryName.toUpperCase() !== "ALL") {
+      var category = await Category.findOne({ name: categoryName });
+    }else{
+        var category = await Category.find({});
     }
-    
-    
+
+    if (!category) {
+      if (
+        categoryName.toUpperCase() in
+        [
+          "PC & LAPTOPS",
+          "COOLER",
+          "ALL",
+          "CYCLES",
+          "MOBILES",
+          "STUDY MATERIAL",
+          "SPORTS",
+          "OTHERS",
+        ]
+      ) {
+        return NextResponse.json(
+          { message: "No Product Found in this category" },
+          { status: 201 }
+        );
+      }
+      return NextResponse.json(
+        { error: "Category not found" },
+        { status: 404 }
+      );
+    }
+
     const products = await Products.aggregate([
       {
         $match: {
@@ -53,7 +71,8 @@ export async function GET(req) {
           ],
           as: "ownerDetails",
         },
-      },{
+      },
+      {
         $lookup: {
           from: "category",
           localField: "categories",
@@ -77,7 +96,7 @@ export async function GET(req) {
           ownerDetails: { $arrayElemAt: ["$ownerDetails", 0] },
           categoryDetails: { $arrayElemAt: ["$categoryDetails", 0] },
         },
-      }
+      },
     ]);
 
     return NextResponse.json(
@@ -87,7 +106,6 @@ export async function GET(req) {
       },
       { status: 200 }
     );
-
   } catch (error) {
     console.log("Error fetching categories:", error);
     return NextResponse.json(
