@@ -35,14 +35,18 @@ export default function NavbarDemo() {
     <div className="fixed top-1 w-full z-100 ">
       <Navbar>
 
+
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
+            <NavbarButton variant="secondary">Login</NavbarButton>
+            <NavbarButton variant="primary">Add Products</NavbarButton>
             <Link href="/"><NavbarButton variant="secondary">Login</NavbarButton></Link>
             <Link href="/userDashboard"><NavbarButton variant="primary">Dashboard</NavbarButton></Link>
           </div>
         </NavBody>
+
 
 
         <MobileNav>
@@ -64,6 +68,18 @@ export default function NavbarDemo() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full">
+                Login
+              </NavbarButton>
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant="primary"
+                className="w-full">
+                Add Products
+              </NavbarButton>
               <Link href="/">
                 <NavbarButton
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -84,6 +100,7 @@ export default function NavbarDemo() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
+
 
     </div>
   );

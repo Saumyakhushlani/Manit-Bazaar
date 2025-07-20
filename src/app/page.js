@@ -12,7 +12,7 @@ export default function Home() {
         <LandingPage />
         <Rules/>
         <ItemForm/>
-        {/* <Footer /> */}
+        <Footer />
       </div>    
     </>
   );
