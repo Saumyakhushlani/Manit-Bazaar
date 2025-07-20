@@ -29,7 +29,7 @@ const CategoryPage =  ({ params }) => {
   return (
     <>
       <NavbarDemo />
-      <div className="bg-neutral-950 flex flex-col justify-center items-center py-22 px-10">
+      <div className="bg-neutral-950 flex flex-col justify-center items-center py-22 px-10 min-h-screen">
         <div className="text-purple-500 text-5xl font-semibold mb-5">
           Discover Amazing Items
         </div>
