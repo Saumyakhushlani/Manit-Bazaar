@@ -4,24 +4,32 @@ import NavbarDemo from "@/components/Header";
 import { MdOutlineErrorOutline } from "react-icons/md";
 import Footer from "@/components/ui/footer";
 import { useParams } from "next/navigation";
+import axios from "axios";
+
 
 const page = ({ props }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
+  const [userData, setUserData] = useState({name:"", email:"", phone: undefined})
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`/api/products?id=${id}`);
+        const response = await axios.get(`api/products?id=${id}`);
+        const me= await axios.get('api/user/me')
 
-        setData([...data, ...response.data.products]);
+        setData([...data, ...(response.data.products || [])]);
+        setUserData({name: me?.data.user.name, email: me?.data.user.email, phone: me?.data.user.phone})
       } catch (error) {
         console.log("Failed in fetching user products and details : ", error);
       }
     };
+    
 
     fetchProduct();
   }, []);
+
+  
 
   return (
     <>
@@ -29,16 +37,16 @@ const page = ({ props }) => {
       <div className="bg-neutral-950 flex flex-col justify-center items-center py-15 md:px-10 px-5">
         <div className="flex md:flex-row flex-col justify-center items-center gap-10 bg-neutral-900 my-5 rounded-xl md:p-6 py-6 px-3">
           <img
-            src={User.img}
-            alt={User.name}
+            src="https://avatar.iran.liara.run/public"
+            alt={userData.name}
             className="w-40 h-40 rounded-full border-2 border-purple-500 flex-1"
           />
           <div className="flex-3">
             <div className="text-3xl text-purple-500 font-semibold mb-2">
-              Name: {User.name}
+              Name: {userData.name}
             </div>
-            <div className="text-xl text-white">Email: {User.email}</div>
-            <div className="text-xl text-white">Phone :{User.phone}</div>
+            <div className="text-xl text-white">Email: {userData.email}</div>
+            <div className="text-xl text-white">Phone :{userData.phone}</div>
           </div>
         </div>
         <div className="text-4xl text-purple-500 font-semibold mt-4 mb-2">

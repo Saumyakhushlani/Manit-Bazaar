@@ -109,6 +109,7 @@ import Products from "@/Models/product";
 import Category from "@/Models/category";
 import { getUserId } from "@/helper/getUserId";
 import mongoose from "mongoose";
+import User from "@/Models/user";
 
 dbconnect();
 
@@ -267,6 +268,10 @@ export async function POST(req) {
 
     categoryDoc.products.push(newProduct._id);
     await categoryDoc.save();
+
+    const user = await User.findById(userId);
+    user.products.push(newProduct._id);
+    await user.save();
 
     console.log("New product created:", newProduct);
 
