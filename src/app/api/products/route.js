@@ -122,7 +122,7 @@ export async function GET(req) {
     if (id) {
       // If id is provided, filter products by userId
       pipeline.push({
-        $match: { owner: id },
+        $match: { owner: new mongoose.Types.ObjectId(id) },
       });
     }
 
