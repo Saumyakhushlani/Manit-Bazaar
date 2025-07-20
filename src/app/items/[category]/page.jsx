@@ -1,12 +1,13 @@
+"use client"
 import React, {useEffect, useState} from "react";
 import NavbarDemo from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import Footer from "@/components/ui/footer";
 import axios from "axios";
+import { useParams } from "next/navigation";
 
-
-const CategoryPage = async ({ params }) => {
-  const { category } = params;
+const CategoryPage = async () => {
+  let { category } = useParams();
   const [products, setProducts] = useState([]);
   
   category = category.replace("-", " ")

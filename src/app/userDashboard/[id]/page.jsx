@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import NavbarDemo from "@/components/Header";
 import { MdOutlineErrorOutline } from "react-icons/md";
@@ -45,36 +46,29 @@ const page = ({ params }) => {
         <button className="bg-purple-500 px-4 py-2 rounded-lg mb-10">
           Add New Item
         </button>
-        {data.length > 0 ? (
-          <div className="flex flex-row flex-wrap justify-evenly items-center  gap-10">
-            {data.map((e) => (
-              <div key={e.id} className="rounded-lg w-75 bg-neutral-900 pb-3">
-                <img
-                  src={e.image}
-                  alt={e.name}
-                  className="w-full h-60 object-cover"
-                />
-                <div className="text-purple-500 text-2xl mt-1.5 font-semibold px-2">
-                  {e.name}
-                </div>
-                <div className="text-white text-md my-1 px-2">
-                  {e.description}
-                </div>
-                <div className="text-white font-semibold px-2">₹{e.price}</div>
-                <button className=" mx-2 bg-red-600 text-white w-30 mt-2 rounded-lg py-1">
-                  Delete
-                </button>
+
+        <div className="flex flex-row flex-wrap justify-evenly items-center  gap-10">
+          {data.map((e) => (
+            <div key={e.id} className="rounded-lg w-75 bg-neutral-900 pb-3">
+              <img
+                src={e.image}
+                alt={e.name}
+                className="w-full h-60 object-cover"
+              />
+              <div className="text-purple-500 text-2xl mt-1.5 font-semibold px-2">
+                {e.name}
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center min-h-20">
-            <MdOutlineErrorOutline size={150} className="text-purple-500 " />
-            <div className="text-2xl mt-3 text-white ">
-              It looks like you haven’t listed anything yet.
+              <div className="text-white text-md my-1 px-2">
+                {e.description}
+              </div>
+              <div className="text-white font-semibold px-2">₹{e.price}</div>
+              <button className=" mx-2 bg-red-600 text-white w-30 mt-2 rounded-lg py-1">
+                Delete
+              </button>
             </div>
-          </div>
-        )}
+          ))}
+        </div>
+
       </div>
       <Footer />
     </>
