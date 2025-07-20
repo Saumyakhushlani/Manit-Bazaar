@@ -1,33 +1,30 @@
-"use client"
-import React, {useEffect, useState} from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import NavbarDemo from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
 import Footer from "@/components/ui/footer";
 import axios from "axios";
 import { useParams } from "next/navigation";
 
-const CategoryPage = async () => {
+const CategoryPage = async ({ params }) => {
   let { category } = useParams();
   const [products, setProducts] = useState([]);
-  
-  category = category.replace("-", " ")
+
+  category = category.replace("-", " ");
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        
-        const response = await axios.get(`/api/category?name=${category}`)
+        const response = await axios.get(`/api/category?name=${category}`);
 
-        setProducts([...products, ...response.data.products])
-
+        setProducts([...products, ...(response.data.products || [])]);
       } catch (error) {
-        console.log("Failed in fetching products : ", error) 
+        console.log("Failed in fetching products : ", error);
       }
-    }
+    };
 
-    fetchProducts()
-
-  }, [])
+    fetchProducts();
+  }, []);
 
   return (
     <>
@@ -52,11 +49,10 @@ const CategoryPage = async () => {
           ))}
         </div>
       </div>
-      
-      <Footer/>
+
+      <Footer />
     </>
   );
 };
-
 
 export default CategoryPage;

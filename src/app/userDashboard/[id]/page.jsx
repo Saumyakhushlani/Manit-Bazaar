@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import NavbarDemo from "@/components/Header";
 import { MdOutlineErrorOutline } from "react-icons/md";
 import Footer from "@/components/ui/footer";
+import { useParams } from "next/navigation";
 
-const page = ({ params }) => {
-  const { id } = params;
+const page = ({ props }) => {
+  const { id } = useParams();
   const [data, setData] = useState([]);
 
   useEffect(() => {
