@@ -52,8 +52,8 @@ const page = () => {
   return (
     <>
       <NavbarDemo />
-      <div className="bg-neutral-950 flex flex-col justify-center items-center py-15 px-10">
-        <div className="flex md:flex-row flex-col justify-center items-center gap-10 bg-neutral-900 my-5 rounded-xl p-6">
+      <div className="bg-neutral-950 flex flex-col justify-center items-center py-15 md:px-10 px-5">
+        <div className="flex md:flex-row flex-col justify-center items-center gap-10 bg-neutral-900 my-5 rounded-xl md:p-6 py-6 px-3">
           <img src={User.img} alt={User.name} className="w-40 h-40 rounded-full border-2 border-purple-500 flex-1" />
           <div className="flex-3">
             <div className="text-3xl text-purple-500 font-semibold mb-2">Name: {User.name}</div>

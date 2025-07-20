@@ -11,6 +11,7 @@ import {
   MobileNavMenu,
 } from "@/components/resizable-navbar";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function NavbarDemo() {
   const navItems = [
@@ -33,17 +34,17 @@ export default function NavbarDemo() {
   return (
     <div className="fixed top-1 w-full z-100 ">
       <Navbar>
-        
+
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <Link href="/"><NavbarButton variant="secondary">Login</NavbarButton></Link>
+            <Link href="/userDashboard"><NavbarButton variant="primary">Dashboard</NavbarButton></Link>
           </div>
         </NavBody>
 
-        
+
         <MobileNav>
           <MobileNavHeader>
             <NavbarLogo />
@@ -63,23 +64,27 @@ export default function NavbarDemo() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full">
-                Login
-              </NavbarButton>
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full">
-                Book a call
-              </NavbarButton>
+              <Link href="/">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full">
+                  Login
+                </NavbarButton>
+              </Link>
+              <Link href="/userDashboar">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full">
+                  Dashboard
+                </NavbarButton>
+              </Link>
             </div>
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-     
+
     </div>
   );
 }
