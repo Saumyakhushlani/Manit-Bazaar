@@ -226,19 +226,6 @@ export async function POST(req) {
 
     let { name, description, category, price, imageurl } = data;
 
-    console.log("Received data:", data);
-    var categoryId = await Category.findOne({
-      name: category.toUpperCase().trim(),
-    });
-
-    if (!categoryId) {
-      var newCategory = await Category.create({
-        name: category.toUpperCase().trim(),
-      });
-      category = newCategory._id;
-    }
-    console.log("Category found:", categoryId || newCategory);
-
     // Validations
     if (!name || !description || !category || !price || !imageurl) {
       return NextResponse.json(
@@ -252,6 +239,18 @@ export async function POST(req) {
         { success: false, message: "Price must be greater than 0" },
         { status: 400 }
       );
+    }
+
+    // console.log("Received data:", data);
+    var categoryId = await Category.findOne({
+      name: category.toUpperCase().trim(),
+    });
+
+    if (!categoryId) {
+      var newCategory = await Category.create({
+        name: category.toUpperCase().trim(),
+      });
+      category = newCategory._id;
     }
 
     const newProduct = await Products.create({
