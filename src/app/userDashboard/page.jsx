@@ -1,6 +1,7 @@
 import React from "react";
 import NavbarDemo from "@/components/Header";
 import { MdOutlineErrorOutline } from "react-icons/md";
+import Footer from "@/components/ui/footer";
 
 
 const page = () => {
@@ -83,6 +84,7 @@ const page = () => {
           </div>
         }
       </div>
+      <Footer/>
     </>
   );
 };

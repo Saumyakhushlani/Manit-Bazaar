@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import dbconnect from "@/DB/dbconfig";
 import Products from "@/Models/product";
 import { notFound } from "next/navigation";
+import Footer from "@/components/ui/footer";
 
 const CategoryPage = async ({ params }) => {
   const { category } = params;
@@ -48,6 +49,7 @@ const CategoryPage = async ({ params }) => {
           ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
