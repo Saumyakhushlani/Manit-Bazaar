@@ -1,17 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import { Passero_One } from "next/font/google";
 
-const categories = [
-  "Cooler",
-  "Cycle",
-  "Mobile",
-  "Pc & Laptop",
-  "Study",
-  "Sports",
-  "Other",
-];
+const categories = ["COOLER","CYCLE","MOBILE","PC & LAPTOP","STUDY","SPORTS","OTHER"];
 
 export default function ItemForm() {
   const [formData, setFormData] = useState({
@@ -21,7 +12,7 @@ export default function ItemForm() {
     category: "",
     price: "",
   });
-
+  
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image") {

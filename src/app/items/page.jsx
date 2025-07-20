@@ -1,6 +1,7 @@
 import React from 'react'
 import NavbarDemo from '@/components/Header'
 import ProductCard from '@/components/ProductCard'
+import Footer from '@/components/ui/footer'
 
 const page = () => {
     const data = [
@@ -98,6 +99,7 @@ const page = () => {
                     ))}
                 </div>
             </div>
+            <Footer/>
         </>
     )
 }
