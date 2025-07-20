@@ -106,11 +106,14 @@
 import { NextResponse } from "next/server";
 import dbconnect from "@/DB/dbconfig";
 import Products from "@/Models/product";
+import Category from "@/Models/category";
+import { getUserId } from "@/helper/getUserId";
+import mongoose from "mongoose";
 
 dbconnect();
 
-export async function POST(req) {
-  console.log("Fetching products...");
+export async function GET(req) {
+  //   console.log("Fetching products...");
   try {
     let pipeline = [];
     // fetching the userId from the request
@@ -186,27 +189,26 @@ export async function POST(req) {
   }
 }
 
-
 export async function DELETE(req) {
   try {
     const productId = await req.nextUrl.searchParams.get("id");
-    
+
     if (!productId) {
       return NextResponse.json(
         { message: "Product ID is required" },
         { status: 400 }
       );
     }
-    
+
     const deletedProduct = await Products.findByIdAndDelete(productId);
-    
+
     if (!deletedProduct) {
       return NextResponse.json(
         { message: "Product not found" },
         { status: 404 }
       );
     }
-    
+
     return NextResponse.json(
       { message: "Product deleted successfully" },
       { status: 200 }
@@ -214,5 +216,60 @@ export async function DELETE(req) {
   } catch (error) {
     console.log("Failed in deleting product: ", error);
     return NextResponse.json({ message: error }, { status: 500 });
+  }
+}
+
+export async function POST(req) {
+  try {
+    const data = await req.json();
+    const userId = await getUserId();
+
+    let { name, description, category, price, imageurl } = data;
+
+    console.log("Received data:", data);
+    var categoryId = await Category.findOne({
+      name: category.toUpperCase().trim(),
+    });
+
+    if (!categoryId) {
+      var newCategory = await Category.create({
+        name: category.toUpperCase().trim(),
+      });
+      category = newCategory._id;
+    }
+    console.log("Category found:", categoryId || newCategory);
+
+    // Validations
+    if (!name || !description || !category || !price || !imageurl) {
+      return NextResponse.json(
+        { success: false, message: "All fields required" },
+        { status: 400 }
+      );
+    }
+
+    if (price <= 0) {
+      return NextResponse.json(
+        { success: false, message: "Price must be greater than 0" },
+        { status: 400 }
+      );
+    }
+
+    const newProduct = await Products.create({
+      name,
+      description,
+      categories: new mongoose.Types.ObjectId(categoryId),
+      price,
+      image: imageurl,
+      owner: new mongoose.Types.ObjectId(userId), // Assuming userId is passed in data
+    });
+
+    return NextResponse.json({ success: true, product: newProduct });
+  } catch (err) {
+    console.log("Upload Error:", err);
+
+    return NextResponse.json(
+      { success: false, message: "Server error while uploading item" },
+      { status: 500 }
+    );
   }
 }

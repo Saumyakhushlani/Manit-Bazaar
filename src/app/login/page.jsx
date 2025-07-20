@@ -25,6 +25,7 @@ const Page = () => {
         try {
             const response = await axios.post("api/user/login",{username: formData.scholarNo, password: formData.password})
 
+            router.push("/")
             toast.success("Login Successfully");
         } catch (error) {
             if(error.status === 401){

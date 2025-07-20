@@ -19,7 +19,7 @@ const productSchema = new Schema(
     },
     categories: {
       type: mongoose.Types.ObjectId,
-      ref: "category",
+      ref: "categorys",
     },
     image: {
       type: String,
@@ -27,7 +27,7 @@ const productSchema = new Schema(
     },
     owner: {
       type: mongoose.Types.ObjectId,
-      ref: "user",
+      ref: "users",
     },
   },
   {
