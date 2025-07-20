@@ -53,7 +53,7 @@ export default function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            {id && <Link href="/login"><NavbarButton variant="secondary">Login</NavbarButton></Link>}
+            {!id && <Link href="/login"><NavbarButton variant="secondary">Login</NavbarButton></Link>}
 
             <Link href={`/userDashboard/${id}`}><NavbarButton variant="primary">Dashboard</NavbarButton></Link>
           </div>
