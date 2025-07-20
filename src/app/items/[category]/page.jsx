@@ -49,6 +49,7 @@ const CategoryPage = async ({ params }) => {
           ))}
         </div>
       </div>
+      
       <Footer/>
     </>
   );
