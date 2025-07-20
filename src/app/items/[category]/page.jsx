@@ -57,4 +57,5 @@ const CategoryPage = async ({ params }) => {
   );
 };
 
+
 export default CategoryPage;
