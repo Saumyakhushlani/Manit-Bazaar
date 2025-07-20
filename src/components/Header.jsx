@@ -16,6 +16,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 export default function NavbarDemo() {
+  const[id,setid]=useState()
   const navItems = [
     {
       name: "Home",
@@ -35,10 +36,12 @@ export default function NavbarDemo() {
     const getuserid = async () => {
       
       const response = await axios.get("/api/user/me")
+      console.log(response)
+      setid(response?.data.userId)
     }
     getuserid()
   },[])
-  const id = response?.data?.userId 
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (

@@ -6,7 +6,7 @@ import Footer from "@/components/ui/footer";
 import axios from "axios";
 import { useParams } from "next/navigation";
 
-const CategoryPage = async ({ params }) => {
+const CategoryPage =  ({ params }) => {
   let { category } = useParams();
   const [products, setProducts] = useState([]);
 

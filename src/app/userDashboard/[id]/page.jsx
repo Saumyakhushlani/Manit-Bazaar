@@ -10,26 +10,41 @@ import axios from "axios";
 const page = ({ props }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
-  const [userData, setUserData] = useState({name:"", email:"", phone: undefined})
+  const [userData, setUserData] = useState({ name: "", email: "", phone: undefined })
+
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`api/products?id=${id}`);
-        const me= await axios.get('api/user/me')
+        const response = await axios.get(`/api/products?id=${id}`);
+
 
         setData([...data, ...(response.data.products || [])]);
-        setUserData({name: me?.data.user.name, email: me?.data.user.email, phone: me?.data.user.phone})
+
       } catch (error) {
         console.log("Failed in fetching user products and details : ", error);
       }
-    };
-    
 
+    };
+
+    const userdetails = async () => {
+      try {
+        const me = await axios.get('/api/user/me')
+        console.log(me)
+        setUserData({ name: me?.data.user.name, email: me?.data.user.email, phone: me?.data.user.phone })
+      } catch (error) {
+        console.log("Error in fetching user details : ", error)
+      }
+    }
+    const deleteProduct = async (e) => {
+      await axios.delete(`/api/product?id=${[e._id]}`)
+    }
+    userdetails()
     fetchProduct();
+    console.log(userData)
   }, []);
 
-  
+
 
   return (
     <>
@@ -71,7 +86,9 @@ const page = ({ props }) => {
                 {e.description}
               </div>
               <div className="text-white font-semibold px-2">₹{e.price}</div>
-              <button className=" mx-2 bg-red-600 text-white w-30 mt-2 rounded-lg py-1">
+              <button 
+              onClick={deleteProduct}
+              className=" mx-2 bg-red-600 text-white w-30 mt-2 rounded-lg py-1">
                 Delete
               </button>
             </div>
