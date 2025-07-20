@@ -118,7 +118,8 @@ export async function GET(req) {
   try {
     let pipeline = [];
     // fetching the userId from the request
-    const id = await req.nextURL?.searchParams?.get("id");
+    const id = await req.nextUrl?.searchParams?.get("id");
+    // console.log(id);
 
     if (id) {
       // If id is provided, filter products by userId
@@ -176,7 +177,7 @@ export async function GET(req) {
 
     const products = await Products.aggregate(pipeline);
 
-    console.log(products);
+    // console.log(products);
 
     return NextResponse.json(
       {

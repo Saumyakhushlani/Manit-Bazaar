@@ -7,7 +7,7 @@ import Footer from "@/components/ui/footer";
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col justify-center items-center ">
+      <div className="flex flex-col justify-center items-center overflow-x-hidden ">
         <NavbarDemo />
         <LandingPage />
         <Rules/>
