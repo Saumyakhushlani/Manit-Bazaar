@@ -167,7 +167,6 @@ export async function GET(req) {
         name: 1,
         description: 1,
         price: 1,
-        category: 1,
         image: 1,
         ownerDetails: { $arrayElemAt: ["$ownerDetails", 0] },
         categoryDetails: { $arrayElemAt: ["$categoryDetails", 0] },
