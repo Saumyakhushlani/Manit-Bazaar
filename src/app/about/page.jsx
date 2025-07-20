@@ -3,6 +3,7 @@ import React from 'react'
 import Card from '@/components/Card';
 import { motion } from 'motion/react'
 import NavbarDemo from '@/components/Header';
+import Footer from '@/components/ui/footer';
 
 const page = () => {
   const team = [
@@ -132,6 +133,7 @@ const page = () => {
           </motion.div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

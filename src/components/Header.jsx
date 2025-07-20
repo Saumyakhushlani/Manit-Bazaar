@@ -11,6 +11,7 @@ import {
   MobileNavMenu,
 } from "@/components/resizable-navbar";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function NavbarDemo() {
   const navItems = [
@@ -20,7 +21,7 @@ export default function NavbarDemo() {
     },
     {
       name: "Products",
-      link: "/products",
+      link: "/product",
     },
     {
       name: "About",
@@ -31,8 +32,9 @@ export default function NavbarDemo() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="fixed top-1 w-full z-100">
+    <div className="fixed top-1 w-full z-100 ">
       <Navbar>
+
 
         <NavBody>
           <NavbarLogo />
@@ -40,8 +42,11 @@ export default function NavbarDemo() {
           <div className="flex items-center gap-4">
             <NavbarButton variant="secondary">Login</NavbarButton>
             <NavbarButton variant="primary">Add Products</NavbarButton>
+            <Link href="/"><NavbarButton variant="secondary">Login</NavbarButton></Link>
+            <Link href="/userDashboard"><NavbarButton variant="primary">Dashboard</NavbarButton></Link>
           </div>
         </NavBody>
+
 
 
         <MobileNav>
@@ -75,10 +80,27 @@ export default function NavbarDemo() {
                 className="w-full">
                 Add Products
               </NavbarButton>
+              <Link href="/">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full">
+                  Login
+                </NavbarButton>
+              </Link>
+              <Link href="/userDashboar">
+                <NavbarButton
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  variant="primary"
+                  className="w-full">
+                  Dashboard
+                </NavbarButton>
+              </Link>
             </div>
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
+
 
     </div>
   );

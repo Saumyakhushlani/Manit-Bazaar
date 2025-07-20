@@ -38,10 +38,10 @@ const ProductCard = ({ data }) => {
                         animate={{ x: 0 }}
                         exit={{ x: "100vw" }}
                         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                        className='fixed inset-0 bg-neutral-950 bg-opacity-90 flex justify-center items-center z-100 overflow-y-auto'
+                        className='fixed inset-0 bg-neutral-950 bg-opacity-90 flex justify-center items-center z-[100] overflow-y-auto'
                     >
                         <motion.div
-                            className='bg-neutral-950 py-15  w-full h-full flex flex-col relative z-1000'
+                            className='bg-neutral-950 py-15  w-full h-full flex flex-col relative z-[1000]'
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.8, opacity: 0 }}
@@ -73,8 +73,8 @@ const ProductCard = ({ data }) => {
                             </div>
                             <div className='md:p-6 p-2 px-6'>
                                 <div className='text-5xl text-purple-400 font-semibold'>Contact</div>
-                                <button className='bg-green-500 text-white flex gap-2 justify-center items-center w-full py-2 rounded-lg text-xl my-3'><FaWhatsapp />WhatsApp</button>
-                                <button className='bg-red-500 text-white flex gap-2 justify-center items-center w-full py-2 rounded-lg text-xl'><MdOutlineMail />Mail</button>
+                                <button className='bg-green-500 text-white flex gap-2 justify-center items-center w-full md:w-1/4 py-2 rounded-lg text-xl my-3'><FaWhatsapp />WhatsApp</button>
+                                <button className='bg-red-500 text-white flex gap-2 justify-center items-center w-full md:w-1/4 py-2 rounded-lg text-xl'><MdOutlineMail />Mail</button>
                             </div>
                         </motion.div>
                     </motion.div>

@@ -4,13 +4,13 @@ import Aurora from "../Aurora";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col gap-3 items-center justify-center p-4 nutral-950 w-full">
+    <footer className="flex flex-col  items-center justify-center mt-15 nutral-950 w-full">
       <div className="p-1 bg-clip-text text-transparent ">
-        <span className="font-bold lg:text-5xl text-3xl text-center text-white">
-          MANIT BAZAAR
+        <span className="font-bold md:text-6xl text-3xl text-center text-white">
+          <span className="text-purple-500">MANIT</span> BAZAAR
         </span>
       </div>
-      <div className="sm:mt-5 mt-2">
+      <div className=" mb-2">
         <ul className="flex flex-row gap-8 justify-center text-lg font-semibold">
           <li>
             <Link
@@ -22,7 +22,7 @@ const Footer = () => {
           </li>
           <li>
             <Link
-              href="/products"
+              href="/product"
               className="text-purple-400 hover:text-white cursor-pointer"
             >
               Product

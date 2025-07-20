@@ -2,17 +2,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const categories = ["Books","Electronics","Furniture","Stationery","Clothing","Others"];
+const categories = ["COOLER","CYCLE","MOBILE","PC & LAPTOP","STUDY","SPORTS","OTHER"];
 
 export default function ItemForm() {
   const [formData, setFormData] = useState({
-    image: null,
+    image: undefined,
     name: "",
     description: "",
     category: "",
     price: "",
   });
-
+  
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image") {
@@ -26,29 +26,46 @@ export default function ItemForm() {
     e.preventDefault();
 
     const data = new FormData();
-    data.append("name", formData.name);
-    data.append("description", formData.description);
-    data.append("price", formData.price);
-    data.append("category", formData.category);
     data.append("image", formData.image); //  File object
 
     try {
-      const res = await axios.post("/api/upload", data, {
+      const response = await axios.post("/api/multer/upload", data, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "multipart/form-data", // Optional — browser sets it automatically
         },
       });
 
-      if (res.data.success) {
-        alert("Product added!");
-      } else {
-        alert("Failed to add item");
+      setFormData({ ...formData, image: response.data.cloudinary_uri });
+
+      try {
+        const res = await axios.post(
+          "/api/products",
+          {
+            name: formData.name,
+            description: formData.description,
+            category: formData.category.toUpperCase(),
+            price: formData.price,
+            imageurl: response.data.cloudinary_uri,
+          },
+          {
+            headers: {
+              Type: "multipart/form-data",
+            },
+          }
+        );
+
+        if (res.data.success) {
+          alert("Product added!");
+        } else {
+          alert("Failed to add item");
+        }
+      } catch (error) {
+        console.error("Error uploading product:", error);
+        alert("Upload failed");
       }
     } catch (error) {
-      console.error("Error uploading product:", error);
-      alert("Upload failed");
+      console.log("Failed in uploading Image : ", error);
     }
-
     // Reset form
     setFormData({
       image: null,
@@ -61,10 +78,9 @@ export default function ItemForm() {
     // Clear file input manually
     document.getElementById("imageUpload").value = null;
   };
-  
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
+    <div className="min-Contenth-screen flex items-center justify-center bg-black">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-zinc-900 p-8 rounded-3xl shadow-xl ring-1 ring-zinc-800 transition-all duration-300"
@@ -148,7 +164,6 @@ export default function ItemForm() {
     </div>
   );
 }
-
 
 // {
 //   /* <div className="min-h-screen bg-zinc-950 text-white py-10 px-4">

@@ -11,7 +11,8 @@ export default function Home() {
         <NavbarDemo />
         <LandingPage />
         <Rules/>
-        <Footer />
+        <ItemForm/>
+        {/* <Footer /> */}
       </div>    
     </>
   );

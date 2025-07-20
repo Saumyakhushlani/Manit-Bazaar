@@ -96,6 +96,7 @@ export async function POST(req) {
       });
     } catch (error) {
       console.log(error);
+      return NextResponse.json({ message: "Failed in ERP Authentication" }, { status: 403 });
     }
   } catch (error) {
     console.log("Failed in Login : ", error);

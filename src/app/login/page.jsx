@@ -1,8 +1,12 @@
 "use client"
 import React, { useState } from "react"
 import { motion } from "motion/react"
+import axios from "axios"
+import { useRouter } from "next/navigation"
+import { Toaster, toast } from "react-hot-toast"
 
 const Page = () => {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         scholarNo: "",
         password: "",
@@ -16,13 +20,30 @@ const Page = () => {
         }))
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log("Form Data:", formData)
+        try {
+            const response = await axios.post("api/user/login",{username: formData.scholarNo, password: formData.password})
+
+            router.push("/")
+            toast.success("Login Successfully");
+        } catch (error) {
+            if(error.status === 401){
+                toast.error("Username and Password required")
+            }else if(error.status === 403){
+                // toast.error("")
+            }else {
+                console.log("Internal Server Error : ", error);
+                toast.error("Error 500 : Internal Server Error")
+
+            }
+
+        }
     }
 
     return (
         <div className="flex md:flex-row flex-col justify-center items-center w-full min-h-screen overflow-hidden">
+        <Toaster/>
             <motion.div
                 className="md:flex-1 flex-1/4 bg-purple-700 h-screen flex flex-col items-center justify-center"
                 animate={{ x: 0 }}

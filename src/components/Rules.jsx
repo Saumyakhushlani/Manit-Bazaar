@@ -38,8 +38,8 @@ const Rules = () => {
                     <motion.div
                         whileInView={{x:0,opacity:1}}
                         initial={{x:-200,opacity:0}}
-                        transition={{duration:0.4,delay:e.sno*0.1}}
-                        className="text-white md:text-2xl text-xl md:text-left text-center"
+                        transition={{duration:0.1,delay:e.sno*0.05}}
+                        className="text-white md:text-xl text-lg md:text-left text-center"
                         dangerouslySetInnerHTML={{ __html: `${e.sno}. ${e.content}` }}
                     />
                 </div>
