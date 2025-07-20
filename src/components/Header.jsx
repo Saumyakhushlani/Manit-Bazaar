@@ -12,8 +12,11 @@ import {
 } from "@/components/resizable-navbar";
 import { useState } from "react";
 import Link from "next/link";
+import axios from "axios";
+import { useEffect } from "react";
 
 export default function NavbarDemo() {
+  const[id,setid]=useState()
   const navItems = [
     {
       name: "Home",
@@ -29,6 +32,16 @@ export default function NavbarDemo() {
     },
   ];
 
+  useEffect(()=>{
+    const getuserid = async () => {
+      
+      const response = await axios.get("/api/user/me")
+      console.log(response)
+      setid(response?.data.userId)
+    }
+    getuserid()
+  },[])
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -40,10 +53,9 @@ export default function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Add Products</NavbarButton>
-            <Link href="/"><NavbarButton variant="secondary">Login</NavbarButton></Link>
-            <Link href="/userDashboard"><NavbarButton variant="primary">Dashboard</NavbarButton></Link>
+            {id && <Link href="/login"><NavbarButton variant="secondary">Login</NavbarButton></Link>}
+
+            <Link href={`/userDashboard/${id}`}><NavbarButton variant="primary">Dashboard</NavbarButton></Link>
           </div>
         </NavBody>
 
@@ -68,18 +80,8 @@ export default function NavbarDemo() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full">
-                Login
-              </NavbarButton>
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full">
-                Add Products
-              </NavbarButton>
+
+
               <Link href="/">
                 <NavbarButton
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -88,7 +90,7 @@ export default function NavbarDemo() {
                   Login
                 </NavbarButton>
               </Link>
-              <Link href="/userDashboar">
+              <Link href="{`/userDashboard/${id}`}">
                 <NavbarButton
                   onClick={() => setIsMobileMenuOpen(false)}
                   variant="primary"
