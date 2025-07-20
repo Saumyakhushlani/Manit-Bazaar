@@ -148,8 +148,8 @@ export async function GET(req) {
 
     pipeline.push({
       $lookup: {
-        from: "category",
-        localField: "category",
+        from: "categories",
+        localField: "categories",
         foreignField: "_id",
         pipeline: [
           {
@@ -174,6 +174,8 @@ export async function GET(req) {
     });
 
     const products = await Products.aggregate(pipeline);
+
+    console.log(products);
 
     return NextResponse.json(
       {
@@ -220,10 +222,9 @@ export async function DELETE(req) {
 
 export async function POST(req) {
   try {
-    const data = await req.json();
+    const { name, description, category, price, imageurl } = await req.json();
     const userId = await getUserId();
-
-    let { name, description, category, price, imageurl } = data;
+    var categoryId = undefined;
 
     // Validations
     if (!name || !description || !category || !price || !imageurl) {
@@ -241,18 +242,21 @@ export async function POST(req) {
     }
 
     // console.log("Received data:", data);
-    var categoryId = await Category.findOne({
+    var categoryDoc = await Category.findOne({
       name: category.toUpperCase().trim(),
     });
 
-    if (!categoryId) {
+    if (!categoryDoc) {
       var newCategory = await Category.create({
         name: category.toUpperCase().trim(),
       });
       categoryId = newCategory._id;
+      categoryDoc = newCategory;
+    } else {
+      categoryId = categoryDoc._id;
     }
 
-    const newProduct = await Products.create({
+    var newProduct = await Products.create({
       name,
       description,
       categories: new mongoose.Types.ObjectId(categoryId),
@@ -260,6 +264,11 @@ export async function POST(req) {
       image: imageurl,
       owner: new mongoose.Types.ObjectId(userId), // Assuming userId is passed in data
     });
+
+    categoryDoc.products.push(newProduct._id);
+    await categoryDoc.save();
+
+    console.log("New product created:", newProduct);
 
     return NextResponse.json({ success: true, product: newProduct });
   } catch (err) {
