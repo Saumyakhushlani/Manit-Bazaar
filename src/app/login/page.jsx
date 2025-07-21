@@ -22,6 +22,13 @@ const Page = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if(`${formData.scholarNo}`.length !== 11){
+            toast.error("Invalid Scholar Number")
+            setFormData({
+              scholarNo: "",
+              password: "",
+            });
+        }
         try {
             const response = await axios.post("api/user/login",{username: formData.scholarNo, password: formData.password})
 
@@ -82,7 +89,7 @@ const Page = () => {
                         </label>
                         <div className="relative">
                             <input
-                                type="text"
+                                type="number"
                                 id="scholar"
                                 name="scholarNo"
                                 required
