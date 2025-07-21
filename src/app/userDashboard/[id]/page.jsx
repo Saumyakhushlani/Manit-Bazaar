@@ -85,7 +85,7 @@ const page = ({ props }) => {
               Name: {userData.name}
             </div>
             <div className="text-xl text-black">Email: {userData.email}</div>
-            <div className="text-xl text-black">Phone :{userData.phone}</div>
+            <div className="text-xl text-black">Phone: {userData.phone}</div>
           </div>
         </div>
         <div className="text-4xl text-[#e05548] font-semibold mt-4 mb-2">
