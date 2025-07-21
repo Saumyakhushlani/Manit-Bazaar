@@ -5,12 +5,17 @@ import { MdOutlineErrorOutline } from "react-icons/md";
 import Footer from "@/components/ui/footer";
 import { useParams } from "next/navigation";
 import axios from "axios";
+import { motion } from 'motion/react'
+import ItemForm from "@/components/ItemForm";
+import { Cross } from "lucide-react";
 
 
 const page = ({ props }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [userData, setUserData] = useState({ name: "", email: "", phone: undefined })
+
+  const [openmodal, setModalOpen] = useState(false)
 
 
   useEffect(() => {
@@ -41,21 +46,20 @@ const page = ({ props }) => {
     fetchProduct();
     console.log(userData)
   }, []);
-  
+
   const deleteProduct = async (e) => {
     try {
       await axios.delete(`/api/products?id=${e._id}`)
-      
+
     } catch (error) {
       console.log("Failed in deleting product : ", e)
     }
   }
 
-
   return (
     <>
       <NavbarDemo />
-      <div className="bg-neutral-950 flex flex-col justify-center items-center py-15 md:px-10 px-5">
+      <div className="bg-neutral-950 flex flex-col justify-center items-center py-15 md:px-10 px-5 overflow-x-hidden">
         <div className="flex md:flex-row flex-col justify-center items-center gap-10 bg-neutral-900 my-5 rounded-xl md:p-6 py-6 px-3">
           <img
             src="https://avatar.iran.liara.run/public"
@@ -73,9 +77,24 @@ const page = ({ props }) => {
         <div className="text-4xl text-purple-500 font-semibold mt-4 mb-2">
           My Products
         </div>
-        <button className="bg-purple-500 px-4 py-2 rounded-lg mb-10">
+        <button className="bg-purple-500 px-4 py-2 rounded-lg mb-10" onClick={() => { setModalOpen(!openmodal) }}>
           Add New Item
         </button>
+
+        <motion.div
+          className="backdrop-blur-xl flex flex-row justify-center items-center w-full h-screen fixed overflow-x-hidden z-1000 inset-0"
+          initial={{ translateX: "-100vw" }}
+          animate={{ translateX: openmodal ? 0 : "-100vw" }}
+          transition={{ duration: 0.4 }}
+        >
+          <ItemForm />
+          <Cross
+            onClick={() => setModalOpen(!openmodal)}
+            className="rotate-45 absolute right-[20px] top-[20px]"
+          />
+
+
+        </motion.div>
 
         <div className="flex flex-row flex-wrap justify-evenly items-center  gap-10">
           {data.map((e) => (
@@ -93,7 +112,7 @@ const page = ({ props }) => {
               </div>
               <div className="text-white font-semibold px-2">₹{e.price}</div>
               <button
-                onClick={() => {deleteProduct(e)}}
+                onClick={() => { deleteProduct(e) }}
                 className=" mx-2 bg-red-600 text-white w-30 mt-2 rounded-lg py-1"
               >
                 Delete
