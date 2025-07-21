@@ -2,7 +2,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const categories = ["COOLER","CYCLE","MOBILE","PC & LAPTOP","STUDY","SPORTS","OTHER"];
+const categories = [
+  "PC & LAPTOPS",
+  "COOLERS",
+  "ALL ITEMS",
+  "CYCLES",
+  "MOBILES",
+  "STUDY MATERIAL",
+  "SPORTS",
+  "OTHERS",
+];
 
 export default function ItemForm() {
   const [formData, setFormData] = useState({
