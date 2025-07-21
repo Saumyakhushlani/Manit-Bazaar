@@ -81,35 +81,35 @@ const page = () => {
   };
 
   return (
-    <div className="bg-neutral-950 min-h-screen">
+    <div className="bg-[#fff8e6] min-h-screen">
       <NavbarDemo />
 
-      <section className="bg-neutral-950 pt-25  px-4 sm:px-6 lg:px-8 ">
+      <section className="bg-[#fff8e6] pt-25  px-4 sm:px-6 lg:px-8 ">
         <div className="max-w-5xl mx-auto text-center flex flex-col justify-center items-center">
-          <h1 className="text-4xl sm:text-5xl font-bold text-purple-500 mb-6">
+          <h1 className="text-4xl sm:text-5xl font-bold text-[#e05548] mb-6">
             Welcome to MANIT Bazzar
           </h1>
-          <p className="text-lg sm:text-xl text-neutral-950 leading-relaxed bg-neutral-100 max-w-2xl px-6 py-6 rounded-xl font-sans border-r-6 border-purple-500">
-            <span className="font-semibold text-purple-600">MANIT Bazzar</span> is the official
+          <p className="text-lg sm:text-xl text-[#000] leading-relaxed bg-[#f7edda] max-w-2xl px-6 py-6 rounded-xl font-sans border-r-6 border-[#e05548]">
+            <span className="font-semibold text-[#e05548]">MANIT Bazzar</span> is the official
             student-driven marketplace for <span className="font-medium">MANIT Bhopal</span>.
-            Here you can <span className="text-purple-600">buy</span> and <span className="text-purple-600">sell</span> anything from
+            Here you can <span className="text-[#e05548]">buy</span> and <span className="text-[#e05548]">sell</span> anything from
             books, notes, gadgets, and hostel essentials to furniture and hobby gear -
             all within the safety of our campus community.
           </p>
-          <p className="mt-6 text-neutral-100 text-lg sm:text-xl max-w-3xl">
+          <p className="mt-6 text-black text-lg sm:text-xl max-w-3xl">
             Our goal is simple: to help students save money, reduce waste, and build a culture
             of reusing and sharing. Join the movement and make your campus life smarter and greener.
           </p>
         </div>
       </section>
 
-      <div className="py-16 bg-neutral-950">
+      <div className="py-16 bg-[#fff8e6]">
         <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-purple-500 mb-4">
+            <h2 className="text-4xl font-bold text-[#e05548] mb-4">
               Our Team
             </h2>
-            <p className="text-xl text-white">
+            <p className="text-xl text-black">
               Meet the dedicated individuals behind MANIT Bazzar
             </p>
           </div>

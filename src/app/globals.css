@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #F7EDDA;
   --foreground: #171717;
 }
 
@@ -14,7 +14,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #F7EDDA;
     --foreground: #ededed;
   }
 }
@@ -49,6 +49,6 @@ html {
 }
 
 *::selection {
-  background-color:#8b5cf6 ;
+  background-color:#E05548 ;
   color: #101010 ;
 }

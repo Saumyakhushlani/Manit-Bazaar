@@ -8,8 +8,17 @@ export async function middleware(req) {
   if (!token && path.startsWith("/userDashboard")) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
+  else if (!token && path.startsWith("/product")) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+  else if (!token && path.startsWith("/items/*")) {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
 
   if (token && path.startsWith("/login")) {
     return NextResponse.redirect(new URL("/", req.url));
+  }
+  else if (token && path.startsWith("/product"||"/items/*")) {
+    return NextResponse.redirect(new URL("/product", req.url));
   }
 }

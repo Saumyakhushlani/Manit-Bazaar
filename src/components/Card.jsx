@@ -23,7 +23,7 @@ const Card = ({ member }) => {
       transition={{ duration: 0.2, ease: "easeOut" }} 
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="relative bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] rounded-2xl overflow-hidden w-96 h-100 border border-[#333] group cursor-pointer transition-shadow duration-200"
+      className="relative bg-[#f7edda] rounded-2xl overflow-hidden w-96 h-100 border border-[#333] group cursor-pointer transition-shadow duration-200"
       style={{
         boxShadow: isHovered 
           ? '0 20px 40px -10px rgba(28, 167, 124, 0.2), 0 0 0 1px rgba(28, 167, 124, 0.1)' 
@@ -60,7 +60,7 @@ const Card = ({ member }) => {
             className="flex flex-col items-center p-2 bg-[#0077b5]/15 hover:bg-[#0077b5]/25 rounded-xl border border-[#0077b5]/20 hover:border-[#0077b5]/40 transition-all duration-200 group/btn hover:scale-105"
           >
             <Linkedin className="w-4 h-4 text-[#0077b5] mb-0.5 group-hover/btn:scale-110 transition-transform duration-150" />
-            <span className="text-xs text-gray-300 font-medium">LinkedIn</span>
+            <span className="text-xs text-black font-medium">LinkedIn</span>
           </button>
 
           <button
@@ -68,16 +68,16 @@ const Card = ({ member }) => {
             className="flex flex-col items-center p-2 bg-gradient-to-br from-pink-500/15 to-purple-500/15 hover:from-pink-500/25 hover:to-purple-500/25 rounded-xl border border-pink-500/20 hover:border-pink-500/40 transition-all duration-200 group/btn hover:scale-105"
           >
             <Instagram className="w-4 h-4 text-pink-400 mb-0.5 group-hover/btn:scale-110 transition-transform duration-150" />
-            <span className="text-xs text-gray-300 font-medium">Instagram</span>
+            <span className="text-xs text-black font-medium">Instagram</span>
           </button>
 
          
           <button
             onClick={() => handleEmailClick(member.email)}
-            className="flex flex-col items-center p-2 bg-blue-500/15 hover:bg-blue-500/25 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-200 group/btn hover:scale-105"
+            className="flex flex-col items-center p-2 bg-blue-500/15 hover:bg-blue-500/15 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-200 group/btn hover:scale-105"
           >
             <Mail className="w-4 h-4 text-blue-400 mb-0.5 group-hover/btn:scale-110 transition-transform duration-150" />
-            <span className="text-xs text-gray-300 font-medium">Email</span>
+            <span className="text-xs text-black font-medium">Email</span>
           </button>
         </div>
       </div>

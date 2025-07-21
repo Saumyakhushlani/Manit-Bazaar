@@ -59,8 +59,8 @@ const page = ({ props }) => {
   return (
     <>
       <NavbarDemo />
-      <div className="bg-neutral-950 flex flex-col justify-center items-center py-15 md:px-10 px-5 overflow-x-hidden">
-        <div className="flex md:flex-row flex-col justify-center items-center gap-10 bg-neutral-900 my-5 rounded-xl md:p-6 py-6 px-3">
+      <div className="bg-[#fff8e6] flex flex-col justify-center items-center py-15 md:px-10 px-5 overflow-x-hidden">
+        <div className="flex md:flex-row flex-col justify-center items-center gap-10 bg-[#fff8e6] my-5 rounded-xl md:p-6 py-6 px-3">
           <img
             src="https://avatar.iran.liara.run/public"
             alt={userData.name}
@@ -98,7 +98,7 @@ const page = ({ props }) => {
 
         <div className="flex flex-row flex-wrap justify-evenly items-center  gap-10">
           {data.map((e) => (
-            <div key={e.id} className="rounded-lg w-75 bg-neutral-900 pb-3">
+            <div key={e.id} className="rounded-lg w-75 bg-[#fff8e6] pb-3">
               <img
                 src={e.image}
                 alt={e.name}

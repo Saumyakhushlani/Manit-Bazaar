@@ -64,7 +64,7 @@ export const BackgroundBeamsWithCollision = ({ children, className }) => {
     <div
       ref={parentRef}
       className={cn(
-        "h-screen bg-neutral-100 dark:bg-neutral-950 relative flex items-center w-full justify-center overflow-hidden",
+        "h-screen bg-[#F7EDDA] relative flex items-center w-full justify-center overflow-hidden",
         // h-screen if you want bigger
         className
       )}
@@ -174,7 +174,7 @@ const CollisionMechanism = React.forwardRef(
             repeatDelay: beamOptions.repeatDelay || 0,
           }}
           className={cn(
-            "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-indigo-500 via-purple-500 to-transparent",
+            "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-[#E05548] via-[#E05548] to-transparent",
             beamOptions.className
           )}
         />
@@ -214,7 +214,7 @@ const Explosion = ({ ...props }) => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm"
+        className="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-[#E05548] to-transparent blur-sm"
       ></motion.div>
       {spans.map((span) => (
         <motion.span
@@ -226,7 +226,7 @@ const Explosion = ({ ...props }) => {
             opacity: 0,
           }}
           transition={{ duration: Math.random() * 1.5 + 0.5, ease: "easeOut" }}
-          className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-500"
+          className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-[#F7EDDA] to-[#E05548]"
         />
       ))}
     </div>

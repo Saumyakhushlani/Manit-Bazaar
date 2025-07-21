@@ -18,7 +18,7 @@
 
 // export default function CategoryPage() {
 //   return (
-//     <div className="min-h-screen bg-neutral-950 text-white px-4 py-10">
+//     <div className="min-h-screen bg-[#fff8e6] text-white px-4 py-10">
 //       <h1 className="text-3xl md:text-4xl font-bold text-center mb-10 tracking-wide">
 //         Browse by <span className="text-purple-500">Category</span>
 //       </h1>
@@ -86,7 +86,7 @@ const categories = [
 export default function CategoryPage() {
   return (
     <>
-      <div className="min-h-screen bg-neutral-950 text-white px-4 py-20">
+      <div className="min-h-screen bg-[#fff8e6] text-white px-4 py-20">
         <NavbarDemo />
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-10 tracking-wide">
           Browse by <span className="text-purple-500">Category</span>

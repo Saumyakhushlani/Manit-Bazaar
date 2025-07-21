@@ -45,7 +45,7 @@ export async function POST(req) {
         { status: 401 }
       );
     }
-
+    console.log(username,password)
     try {
       const agent = new https.Agent({
         rejectUnauthorized: false, // Disable SSL verification
@@ -64,6 +64,7 @@ export async function POST(req) {
           },
         }
       );
+      
 
       const user = await User.findOne({ email: `${username}@manit.ac.in` });
 
