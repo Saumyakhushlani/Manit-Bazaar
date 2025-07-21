@@ -106,7 +106,7 @@ const Page = () => {
                             <span
                                 className="
           absolute inset-y-0 right-0 flex items-center pr-4
-          text-gray-800 text-sm pointer-events-none
+          text-gray-200 text-sm pointer-events-none
         "
                             >
                                 @manit.ac.in
