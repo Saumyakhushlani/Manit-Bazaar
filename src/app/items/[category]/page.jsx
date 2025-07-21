@@ -1,30 +1,30 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import NavbarDemo from "@/components/Header";
 import ProductCard from "@/components/ProductCard";
-import dbconnect from "@/DB/dbconfig";
-import Products from "@/Models/product";
-import { notFound } from "next/navigation";
 import Footer from "@/components/ui/footer";
+import axios from "axios";
+import { useParams } from "next/navigation";
 
-const CategoryPage = async ({ params }) => {
-  const { category } = params;
-  await dbconnect();
+const CategoryPage =  ({ params }) => {
+  let { category } = useParams();
+  const [products, setProducts] = useState([]);
 
-  let products = [];
+  category = category.replace("-", " ");
 
-  try {
-    if (category === "all") {
-      products = await products.find({}).lean();
-    } else {
-      const categoryKey = category.toUpperCase();
-      products = await Products.find({ categories: categoryKey }).lean();
-    }
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`/api/category?name=${category}`);
 
-    if (!products.length) return notFound();
-  } catch (err) {
-    console.error("Error fetching products:", err);
-    return notFound();
-  }
+        setProducts([...products, ...(response.data.products || [])]);
+      } catch (error) {
+        console.log("Failed in fetching products : ", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <>
@@ -49,8 +49,8 @@ const CategoryPage = async ({ params }) => {
           ))}
         </div>
       </div>
-      
-      <Footer/>
+
+      <Footer />
     </>
   );
 };

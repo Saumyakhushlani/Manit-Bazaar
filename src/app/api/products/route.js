@@ -109,6 +109,7 @@ import Products from "@/Models/product";
 import Category from "@/Models/category";
 import { getUserId } from "@/helper/getUserId";
 import mongoose from "mongoose";
+import User from "@/Models/user";
 
 dbconnect();
 
@@ -117,12 +118,13 @@ export async function GET(req) {
   try {
     let pipeline = [];
     // fetching the userId from the request
-    const id = await req.nextURL?.searchParams?.get("id");
+    const id = await req.nextUrl?.searchParams?.get("id");
+    // console.log(id);
 
     if (id) {
       // If id is provided, filter products by userId
       pipeline.push({
-        $match: { owner: id },
+        $match: { owner: new mongoose.Types.ObjectId(id) },
       });
     }
 
@@ -148,8 +150,8 @@ export async function GET(req) {
 
     pipeline.push({
       $lookup: {
-        from: "category",
-        localField: "category",
+        from: "categories",
+        localField: "categories",
         foreignField: "_id",
         pipeline: [
           {
@@ -175,6 +177,8 @@ export async function GET(req) {
 
     const products = await Products.aggregate(pipeline);
 
+    // console.log(products);
+
     return NextResponse.json(
       {
         success: true,
@@ -191,6 +195,7 @@ export async function GET(req) {
 export async function DELETE(req) {
   try {
     const productId = await req.nextUrl.searchParams.get("id");
+
 
     if (!productId) {
       return NextResponse.json(
@@ -220,10 +225,9 @@ export async function DELETE(req) {
 
 export async function POST(req) {
   try {
-    const data = await req.json();
+    const { name, description, category, price, imageurl } = await req.json();
     const userId = await getUserId();
-
-    let { name, description, category, price, imageurl } = data;
+    var categoryId = undefined;
 
     // Validations
     if (!name || !description || !category || !price || !imageurl) {
@@ -240,19 +244,23 @@ export async function POST(req) {
       );
     }
 
-    // console.log("Received data:", data);
-    var categoryId = await Category.findOne({
+    console.log(category)
+
+    var categoryDoc = await Category.findOne({
       name: category.toUpperCase().trim(),
     });
 
-    if (!categoryId) {
+    if (!categoryDoc) {
       var newCategory = await Category.create({
         name: category.toUpperCase().trim(),
       });
-      category = newCategory._id;
+      categoryId = newCategory._id;
+      categoryDoc = newCategory;
+    } else {
+      categoryId = categoryDoc._id;
     }
 
-    const newProduct = await Products.create({
+    var newProduct = await Products.create({
       name,
       description,
       categories: new mongoose.Types.ObjectId(categoryId),
@@ -260,6 +268,15 @@ export async function POST(req) {
       image: imageurl,
       owner: new mongoose.Types.ObjectId(userId), // Assuming userId is passed in data
     });
+
+    categoryDoc.products.push(newProduct._id);
+    await categoryDoc.save();
+
+    const user = await User.findById(userId);
+    user.products.push(newProduct._id);   
+    await user.save();
+
+    console.log("New product created:", newProduct);
 
     return NextResponse.json({ success: true, product: newProduct });
   } catch (err) {
