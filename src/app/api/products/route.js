@@ -196,6 +196,7 @@ export async function DELETE(req) {
   try {
     const productId = await req.nextUrl.searchParams.get("id");
 
+    
     if (!productId) {
       return NextResponse.json(
         { message: "Product ID is required" },
