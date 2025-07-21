@@ -14,9 +14,10 @@ import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function NavbarDemo() {
-  const[id,setid]=useState()
+  const [id, setid] = useState()
   const navItems = [
     {
       name: "Home",
@@ -32,16 +33,30 @@ export default function NavbarDemo() {
     },
   ];
 
-  useEffect(()=>{
+  useEffect(() => {
     const getuserid = async () => {
-      
-      const response = await axios.get("/api/user/me")
-      console.log(response)
+      try {
+
+        const response = await axios.get("/api/user/me")
+        console.log(response)
       setid(response?.data.userId)
+      } catch (error) {
+        console.log("Not Logged In",error)
+      }
+      
     }
     getuserid()
-  },[])
-  
+  }, [])
+
+  const router =useRouter()
+  const logoutuser = async()=>{
+    try {
+      await axios.get('/api/user/logout')
+      router.push('/')
+    } catch (error) {
+      console.log("Error in Logout",error)
+    }
+  }
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -53,8 +68,8 @@ export default function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            {!id && <Link href="/login"><NavbarButton variant="secondary">Login</NavbarButton></Link>}
-
+            {!id && <a href="/login"><NavbarButton variant="secondary">Login</NavbarButton></a>}
+            {id&& <button onClick={logoutuser}><NavbarButton variant="secondary">Logout</NavbarButton></button>}
             <Link href={`/userDashboard/${id}`}><NavbarButton variant="primary">Dashboard</NavbarButton></Link>
           </div>
         </NavBody>

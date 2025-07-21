@@ -2,7 +2,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const categories = ["COOLER","CYCLE","MOBILE","PC & LAPTOP","STUDY","SPORTS","OTHER"];
+const categories = [
+  "PC & LAPTOPS",
+  "COOLERS",
+  "CYCLES",
+  "MOBILES",
+  "STUDY MATERIAL",
+  "SPORTS",
+  "OTHERS",
+];
 
 export default function ItemForm() {
   const [formData, setFormData] = useState({
@@ -12,7 +20,7 @@ export default function ItemForm() {
     category: "",
     price: "",
   });
-  
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "image") {
@@ -164,10 +172,3 @@ export default function ItemForm() {
     </div>
   );
 }
-
-// {
-//   /* <div className="min-h-screen bg-zinc-950 text-white py-10 px-4">
-//         <ItemForm/>
-//       </div> */
-// }
-// paste where needed

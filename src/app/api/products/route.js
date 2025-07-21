@@ -196,7 +196,7 @@ export async function DELETE(req) {
   try {
     const productId = await req.nextUrl.searchParams.get("id");
 
-    
+
     if (!productId) {
       return NextResponse.json(
         { message: "Product ID is required" },
@@ -244,7 +244,8 @@ export async function POST(req) {
       );
     }
 
-    // console.log("Received data:", data);
+    console.log(category)
+
     var categoryDoc = await Category.findOne({
       name: category.toUpperCase().trim(),
     });
@@ -272,7 +273,7 @@ export async function POST(req) {
     await categoryDoc.save();
 
     const user = await User.findById(userId);
-    user.products.push(newProduct._id);
+    user.products.push(newProduct._id);   
     await user.save();
 
     console.log("New product created:", newProduct);

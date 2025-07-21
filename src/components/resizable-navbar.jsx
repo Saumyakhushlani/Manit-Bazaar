@@ -225,11 +225,11 @@ export const NavbarButton = ({
   };
 
   return (
-    <Tag
+    <div
       href={href || undefined}
       className={cn(baseStyles, variantStyles[variant], className)}
       {...props}>
       {children}
-    </Tag>
+    </div>
   );
 };
