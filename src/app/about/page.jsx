@@ -23,6 +23,14 @@ const page = () => {
       instagram: "https://www.instagram.com/aadijaintkg/?__pwa=1",
       email: ""
     },
+     {
+      sno: 6,
+      name: "Naitik Raghuwanshi",
+      src: "/naitik.jpg",
+      linkedin: "https://www.linkedin.com/in/naitikraghuwanshi/overlay/about-this-profile/",
+      instagram: "https://www.instagram.com/raghuwanshi_naitik/?__pwa=1",
+      email: "raghuwanshinaitik04@gmail.com"
+    },
     {
       sno: 3,
       name: "Yatharth Upmanyu",
@@ -47,14 +55,7 @@ const page = () => {
       instagram: "https://www.instagram.com/krishnagupta192/?__pwa=1",
       email: ""
     },
-    {
-      sno: 6,
-      name: "Naitik Raghuwanshi",
-      src: "/naitik.jpg",
-      linkedin: "https://www.linkedin.com/in/naitikraghuwanshi/overlay/about-this-profile/",
-      instagram: "https://www.instagram.com/raghuwanshi_naitik/?__pwa=1",
-      email: ""
-    }
+   
   ];
 
   const containerVariants = {

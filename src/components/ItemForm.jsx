@@ -88,12 +88,12 @@ export default function ItemForm() {
   };
 
   return (
-    <div className="min-Contenth-screen flex items-center justify-center bg-black h-screen w-screen">
+    <div className="min-Contenth-screen flex items-center justify-center bg-[#f7edda] h-screen w-screen">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-zinc-900 p-8 rounded-3xl shadow-xl ring-1 ring-zinc-800 transition-all duration-300"
+        className="w-full max-w-lg bg-[#e05548] p-8 rounded-3xl shadow-xl ring-1 ring-zinc-800 transition-all duration-300"
       >
-        <h2 className="text-3xl font-bold text-center text-white mb-6">
+        <h2 className="text-3xl font-bold text-center text-black mb-6">
           List an Item
         </h2>
 
@@ -104,7 +104,7 @@ export default function ItemForm() {
           name="image"
           id="imageUpload"
           onChange={handleChange}
-          className="w-full bg-zinc-800 text-white text-sm file:bg-purple-600 file:border-none file:rounded file:px-4 file:py-2 file:text-white file:cursor-pointer rounded px-2 py-2 mb-4"
+          className="w-full bg-[#fff8e6] text-black text-sm placeholder:text-black file:bg-[#e05548] file:border-none file:rounded file:px-4 file:py-2 file:text-white file:cursor-pointer rounded px-2 py-2 mb-4"
         />
 
         {/* Name of product */}
@@ -116,7 +116,7 @@ export default function ItemForm() {
           onChange={handleChange}
           placeholder="Enter item name"
           required
-          className="w-full bg-zinc-800 text-white rounded px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600 transition"
+          className="w-full bg-[#fff8e6] text-black rounded placeholder:text-black px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#e05548] transition"
         />
 
         {/* Description of product */}
@@ -127,7 +127,7 @@ export default function ItemForm() {
           onChange={handleChange}
           placeholder="Write a short description"
           required
-          className="w-full bg-zinc-800 text-white rounded px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600 transition"
+          className="w-full bg-[#fff8e6] text-black placeholder:text-black rounded px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#e05548] transition"
           rows="3"
         />
 
@@ -138,7 +138,7 @@ export default function ItemForm() {
           value={formData.category}
           onChange={handleChange}
           required
-          className="w-full bg-zinc-800 text-white rounded px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600 transition"
+          className="w-full bg-[#fff8e6] text-black rounded placeholder:text-black px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-[#e05548] transition"
         >
           <option value="">-- Select Category --</option>
           {categories.map((cat) => (
@@ -158,13 +158,13 @@ export default function ItemForm() {
           min="1"
           placeholder="Enter price"
           required
-          className="w-full bg-zinc-800 text-white rounded px-4 py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-purple-600 transition"
+          className="w-full bg-[#fff8e6] text-black placeholder:text-black rounded px-4 py-2 mb-6 focus:outline-none focus:ring-2 focus:ring-[#e05548] transition"
         />
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 rounded-lg bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold text-sm tracking-wide hover:scale-105 transition-transform duration-300"
+          className="w-full py-3 rounded-lg bg-[#fff8e6] text-black font-semibold text-sm tracking-wide hover:scale-105 transition-transform duration-300"
         >
           Submit Item
         </button>

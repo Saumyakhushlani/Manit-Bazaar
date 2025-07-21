@@ -16,15 +16,15 @@ const ProductCard = ({ data }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.3 }}
-                className='bg-neutral-900 md:w-85 w-87 pb-5 min-h-115 flex flex-col justify-center '
+                className='bg-[#fff8e6] md:w-85 w-87 pb-5 min-h-115 flex flex-col justify-center shadow-2xl rounded-2xl'
             >
                 <img src={data.image} alt={data.name} className='w-full h-60  object-cover' />
-                <div className='text-2xl text-purple-500 py-1 px-4'>{data.name}</div>
-                <div className='text-xl text-white px-4'>₹{data.price}</div>
-                <div className='text-md text-white py-1 px-4'>{data.description}</div>
+                <div className='text-2xl text-[#e05548] py-1 px-4'>{data.name}</div>
+                <div className='text-xl text-black px-4'>₹{data.price}</div>
+                <div className='text-md text-black py-1 px-4'>{data.description}</div>
                 <button
                     onClick={openModal}
-                    className='w-1/2 py-1.5 mt-2 mx-4 bg-purple-500 text-black font-sans font-semibold rounded-lg'
+                    className='w-1/2 py-1.5 mt-2 mx-4 bg-[#e05548] text-black font-sans font-semibold rounded-lg'
                 >
                     View Details
                 </button>
@@ -36,7 +36,7 @@ const ProductCard = ({ data }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className='fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 p-4 mt-8 md:pt-8'
+                        className='fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 p-4 '
                         onClick={closeModal}
                     >
                         <motion.div
@@ -44,10 +44,9 @@ const ProductCard = ({ data }) => {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.8, opacity: 0, y: 50 }}
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                            className='bg-white pb-3 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl'
-                            
+                            className='bg-[#FFF8E6] pb-3 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl' // Main background
                         >
-                            <div className='relative bg-gradient-to-r from-purple-600 to-violet-600 p-2 text-white'>
+                            <div className='relative bg-[#E05548] p-2 text-white'> 
                                 <button
                                     onClick={closeModal}
                                     className='absolute top-4 right-4 p-2 hover:bg-white/20 rounded-full transition-colors duration-200'
@@ -65,49 +64,49 @@ const ProductCard = ({ data }) => {
 
                             <div className='flex flex-col lg:flex-row overflow-y-auto max-h-[calc(90vh-120px)]'>
                                 <div className='lg:w-1/2 p-6'>
-                                    <div className='relative rounded-2xl overflow-hidden bg-gray-100'>
-                                        <img 
-                                            src={data.image} 
-                                            alt={data.name} 
-                                            className='w-full h-80 lg:h-96 object-cover' 
+                                    <div className='relative rounded-2xl overflow-hidden bg-[#F7EDDA]'> {/* Image background */}
+                                        <img
+                                            src={data.image}
+                                            alt={data.name}
+                                            className='w-full h-80 lg:h-96 object-cover'
                                         />
-                                        
+
                                     </div>
                                 </div>
 
                                 <div className='lg:w-1/2 p-6 flex flex-col'>
                                     <div className='flex-1'>
-                                        <h3 className='text-3xl font-bold text-gray-900 mb-2'>{data.name}</h3>
-                                        
+                                        <h3 className='text-3xl font-bold text-[#351E11] mb-2'>{data.name}</h3> {/* Dark text */}
+
                                         <div className='flex items-center gap-4 mb-6'>
-                                            <span className='text-4xl font-bold text-purple-600'>₹{data.price}</span>
+                                            <span className='text-4xl font-bold text-[#E05548]'>₹{data.price}</span> {/* Price text - Coral */}
                                             <span className='bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium'>
                                                 In Stock
                                             </span>
                                         </div>
 
-                                        <div className='bg-gray-50 rounded-2xl p-4 mb-6'>
-                                            <h4 className='font-semibold text-gray-900 mb-2'>Description</h4>
-                                            <p className='text-gray-600 leading-relaxed'>{data.description}</p>
+                                        <div className='bg-[#F7EDDA] rounded-2xl p-4 mb-6'> {/* Description background */}
+                                            <h4 className='font-semibold text-[#351E11] mb-2'>Description</h4> {/* Dark text */}
+                                            <p className='text-[#472307] leading-relaxed'>{data.description}</p> {/* Darker brown text */}
                                         </div>
 
-                                        <div className='bg-blue-50 rounded-2xl p-4 mb-6'>
-                                            <h4 className='font-semibold text-gray-900 mb-2'>Seller Information</h4>
+                                        <div className='bg-[#F7EDDA] rounded-2xl p-4 mb-6'> {/* Seller Info background */}
+                                            <h4 className='font-semibold text-[#351E11] mb-2'>Seller Information</h4> {/* Dark text */}
                                             <div className='flex items-center gap-3'>
-                                                <div className='w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold'>
+                                                <div className='w-10 h-10 bg-[#E05548] rounded-full flex items-center justify-center text-white font-bold'> {/* Initial background - Coral */}
                                                     {data.ownerDetails?.name?.charAt(0)}
                                                 </div>
                                                 <div>
-                                                    <p className='font-medium text-gray-900'>{data.ownerDetails?.name}</p>
-                                                    <p className='text-sm text-gray-500'>Verified Seller</p>
+                                                    <p className='font-medium text-[#351E11]'>{data.ownerDetails?.name}</p> {/* Dark text */}
+                                                    <p className='text-sm text-[#472307]'>Verified Seller</p> {/* Darker brown text */}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className='space-y-3'>
-                                        <h4 className='text-lg font-semibold text-gray-900 mb-4'>Get in Touch</h4>
-                                        
+                                        <h4 className='text-lg font-semibold text-[#351E11] mb-4'>Get in Touch</h4> {/* Dark text */}
+
                                         <a
                                             href={`https://wa.me/${data.ownerDetails?.phone}?text=Hello! I'm interested in ${data.name}`}
                                             target="_blank"
@@ -117,7 +116,7 @@ const ProductCard = ({ data }) => {
                                             <Phone size={20} />
                                             <span>WhatsApp Now</span>
                                         </a>
-                                        
+
                                         <a
                                             href={`mailto:${data.ownerDetails?.email}?subject=Interested in ${data.name}&body=Hello, I am interested in your product: ${data.name}`}
                                             className="group bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center gap-3 w-full py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"

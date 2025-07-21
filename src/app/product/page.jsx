@@ -86,10 +86,10 @@ const categories = [
 export default function CategoryPage() {
   return (
     <>
-      <div className="min-h-screen bg-[#fff8e6] text-white px-4 py-20">
+      <div className="min-h-screen bg-[#fff8e6] text-black px-4 py-20">
         <NavbarDemo />
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-10 tracking-wide">
-          Browse by <span className="text-purple-500">Category</span>
+          Browse by <span className="text-[#e05548]">Category</span>
         </h1>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -104,14 +104,14 @@ export default function CategoryPage() {
             >
               <Link
                 href={cat.link}
-                className="flex flex-col items-center bg-neutral-900 hover:bg-neutral-800 transition-colors p-6 rounded-2xl shadow-lg group text-center"
+                className="flex flex-col items-center bg-[#e05548] hover:bg-[#e05548e0] transition-colors p-6 rounded-2xl shadow-lg group text-center"
               >
-                <div className="text-purple-400 mb-4 group-hover:rotate-3 transition-transform">
+                <div className="text-[#fff8e6] mb-4 group-hover:rotate-3 transition-transform">
                   {cat.icon}
                 </div>
                 <div className="text-sm sm:text-base font-medium flex items-center justify-center gap-1">
                   {cat.name}
-                  <FiChevronRight className="text-purple-400 group-hover:translate-x-1 transition-transform" />
+                  <FiChevronRight className="text-black group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             </motion.div>

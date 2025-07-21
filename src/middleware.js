@@ -18,7 +18,4 @@ export async function middleware(req) {
   if (token && path.startsWith("/login")) {
     return NextResponse.redirect(new URL("/", req.url));
   }
-  else if (token && path.startsWith("/product"||"/items/*")) {
-    return NextResponse.redirect(new URL("/product", req.url));
-  }
 }

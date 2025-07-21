@@ -59,25 +59,25 @@ const page = ({ props }) => {
   return (
     <>
       <NavbarDemo />
-      <div className="bg-[#fff8e6] flex flex-col justify-center items-center py-15 md:px-10 px-5 overflow-x-hidden">
-        <div className="flex md:flex-row flex-col justify-center items-center gap-10 bg-[#fff8e6] my-5 rounded-xl md:p-6 py-6 px-3">
+      <div className="bg-[#f7edda] flex flex-col justify-center items-center py-15 md:px-10 px-5 overflow-x-hidden">
+        <div className="flex md:flex-row flex-col justify-center items-center gap-10 bg-[#fff8e6] shadow-xl my-5 rounded-xl md:p-6 py-6 px-3">
           <img
             src="https://avatar.iran.liara.run/public"
             alt={userData.name}
-            className="w-40 h-40 rounded-full border-2 border-purple-500 flex-1"
+            className="w-40 h-40 rounded-full border-2 border-[#e05548] flex-1"
           />
           <div className="flex-3">
-            <div className="text-3xl text-purple-500 font-semibold mb-2">
+            <div className="text-3xl text-[#e05548] font-semibold mb-2">
               Name: {userData.name}
             </div>
-            <div className="text-xl text-white">Email: {userData.email}</div>
-            <div className="text-xl text-white">Phone :{userData.phone}</div>
+            <div className="text-xl text-black">Email: {userData.email}</div>
+            <div className="text-xl text-black">Phone :{userData.phone}</div>
           </div>
         </div>
-        <div className="text-4xl text-purple-500 font-semibold mt-4 mb-2">
+        <div className="text-4xl text-[#e05548] font-semibold mt-4 mb-2">
           My Products
         </div>
-        <button className="bg-purple-500 px-4 py-2 rounded-lg mb-10" onClick={() => { setModalOpen(!openmodal) }}>
+        <button className="bg-[#472307] px-4 py-2 rounded-lg mb-10 text-[#fff8e6]" onClick={() => { setModalOpen(!openmodal) }}>
           Add New Item
         </button>
 
@@ -90,7 +90,7 @@ const page = ({ props }) => {
           <ItemForm />
           <Cross
             onClick={() => setModalOpen(!openmodal)}
-            className="rotate-45 absolute right-[20px] top-[20px]"
+            className="rotate-45 absolute right-[20px] top-[20px] text-[#e05548]"
           />
 
 
@@ -98,19 +98,19 @@ const page = ({ props }) => {
 
         <div className="flex flex-row flex-wrap justify-evenly items-center  gap-10">
           {data.map((e) => (
-            <div key={e.id} className="rounded-lg w-75 bg-[#fff8e6] pb-3">
+            <div key={e.id} className="rounded-lg w-75 bg-[#fff8e6] pb-3 shadow-xl">
               <img
                 src={e.image}
                 alt={e.name}
                 className="w-full h-60 object-cover"
               />
-              <div className="text-purple-500 text-2xl mt-1.5 font-semibold px-2">
+              <div className="text-[#e05548] text-2xl mt-1.5 font-semibold px-2">
                 {e.name}
               </div>
-              <div className="text-white text-md my-1 px-2">
+              <div className="text-black text-md my-1 px-2">
                 {e.description}
               </div>
-              <div className="text-white font-semibold px-2">₹{e.price}</div>
+              <div className="text-black font-semibold px-2">₹{e.price}</div>
               <button
                 onClick={() => { deleteProduct(e) }}
                 className=" mx-2 bg-red-600 text-white w-30 mt-2 rounded-lg py-1"

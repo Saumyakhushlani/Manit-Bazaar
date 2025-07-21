@@ -51,12 +51,9 @@ export async function POST(req) {
         rejectUnauthorized: false, // Disable SSL verification
       });
 
-      const response = await axios.post(
+      const response =await axios.post(
         `https://erpapi.manit.ac.in/api/login`,
-        {
-          username,
-          password,
-        },
+        { username, password },
         {
           httpsAgent: agent, // Use the custom agent to ignore SSL errors
           headers: {
@@ -97,11 +94,13 @@ export async function POST(req) {
       });
     } catch (error) {
       console.log(error);
-      return NextResponse.json({ message: "Failed in ERP Authentication" }, { status: 403 });
+      return NextResponse.json(
+        { message: "Failed in ERP Authentication" },
+        { status: 403 }
+      );
     }
   } catch (error) {
     console.log("Failed in Login : ", error);
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
-
