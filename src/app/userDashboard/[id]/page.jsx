@@ -108,7 +108,24 @@ const page = ({ props }) => {
         >
           <ItemForm />
           <Cross
-            onClick={() => setModalOpen(!openmodal)}
+            onClick={() => {
+              const fetchProduct = async () => {
+                try {
+                  const response = await axios.get(`/api/products?id=${id}`);
+
+                  setData([...(response.data.products || [])]);
+                } catch (error) {
+                  console.log(
+                    "Failed in fetching user products and details : ",
+                    error
+                  );
+                }
+              };
+
+              fetchProduct();
+
+              setModalOpen(!openmodal);
+            }}
             className="rotate-45 absolute right-[20px] top-[20px] text-[#e05548]"
           />
         </motion.div>
