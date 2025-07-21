@@ -36,14 +36,20 @@ const page = ({ props }) => {
         console.log("Error in fetching user details : ", error)
       }
     }
-    const deleteProduct = async (e) => {
-      await axios.delete(`/api/product?id=${[e._id]}`)
-    }
+
     userdetails()
     fetchProduct();
     console.log(userData)
   }, []);
-
+  
+  const deleteProduct = async (e) => {
+    try {
+      await axios.delete(`/api/products?id=${e._id}`)
+      
+    } catch (error) {
+      console.log("Failed in deleting product : ", e)
+    }
+  }
 
 
   return (
@@ -86,15 +92,15 @@ const page = ({ props }) => {
                 {e.description}
               </div>
               <div className="text-white font-semibold px-2">₹{e.price}</div>
-              <button 
-              onClick={deleteProduct}
-              className=" mx-2 bg-red-600 text-white w-30 mt-2 rounded-lg py-1">
+              <button
+                onClick={() => {deleteProduct(e)}}
+                className=" mx-2 bg-red-600 text-white w-30 mt-2 rounded-lg py-1"
+              >
                 Delete
               </button>
             </div>
           ))}
         </div>
-
       </div>
       <Footer />
     </>
