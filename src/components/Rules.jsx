@@ -17,7 +17,7 @@ const Rules = () => {
     ];
 
     return (
-        <div className='bg-[#F7EDDA] py-15 md:px-10 px-5 flex flex-col justify-center items-center'>
+        <div className='py-15 md:px-10 px-5 flex flex-col justify-center items-center'>
             <motion.div className='text-[#E05548] md:text-6xl text-5xl mb-5 font-semibold'
                 initial={{ opacity: 0, y: -50 }}
                 whileInView={{ opacity: 1, y: 0 }}

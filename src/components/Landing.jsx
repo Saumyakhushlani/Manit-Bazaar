@@ -2,11 +2,13 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import Rules from "./Rules";
+import Footer from "./ui/footer";
 
 export function LandingPage() {
   return (
-    <BackgroundBeamsWithCollision>
-      <div className="flex flex-col justify-center items-center">
+    <BackgroundBeamsWithCollision className={'flex flex-col'}>
+      <div className="h-screen flex flex-col justify-center items-center">
         <div>
           <h2 className="text-6xl relative z-20 md:text-4xl lg:text-7xl font-bold text-center text-black ">
             <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-[#472307] to-[#351E11] py-4">
@@ -33,6 +35,8 @@ export function LandingPage() {
           </button>
         </Link>
       </div>
+      <Rules/>
+      <Footer/>
     </BackgroundBeamsWithCollision>
   );
 }

@@ -10,9 +10,9 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center overflow-x-hidden ">
         <NavbarDemo />
         <LandingPage />
-        <Rules/>
+        {/* <Rules/> */}
         {/* <ItemForm/> */}
-        <Footer />
+        {/* <Footer /> */}
       </div>    
     </>
   );

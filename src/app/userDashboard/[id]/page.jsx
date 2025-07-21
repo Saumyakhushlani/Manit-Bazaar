@@ -1,60 +1,74 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import NavbarDemo from "@/components/Header";
 import { MdOutlineErrorOutline } from "react-icons/md";
 import Footer from "@/components/ui/footer";
 import { useParams } from "next/navigation";
 import axios from "axios";
-import { motion } from 'motion/react'
+import { motion } from "motion/react";
 import ItemForm from "@/components/ItemForm";
 import { Cross } from "lucide-react";
-
 
 const page = ({ props }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
-  const [userData, setUserData] = useState({ name: "", email: "", phone: undefined })
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    phone: undefined,
+  });
 
-  const [openmodal, setModalOpen] = useState(false)
-
+  const [openmodal, setModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(`/api/products?id=${id}`);
 
-
-        setData([...data, ...(response.data.products || [])]);
-
+        setData([...(response.data.products || [])]);
       } catch (error) {
         console.log("Failed in fetching user products and details : ", error);
       }
-
     };
 
     const userdetails = async () => {
       try {
-        const me = await axios.get('/api/user/me')
-        console.log(me)
-        setUserData({ name: me?.data.user.name, email: me?.data.user.email, phone: me?.data.user.phone })
+        const me = await axios.get("/api/user/me");
+        console.log(me);
+        setUserData({
+          name: me?.data.user.name,
+          email: me?.data.user.email,
+          phone: me?.data.user.phone,
+        });
       } catch (error) {
-        console.log("Error in fetching user details : ", error)
+        console.log("Error in fetching user details : ", error);
       }
-    }
+    };
 
-    userdetails()
+    userdetails();
     fetchProduct();
-    console.log(userData)
+    console.log(userData);
   }, []);
 
   const deleteProduct = async (e) => {
     try {
-      await axios.delete(`/api/products?id=${e._id}`)
+      await axios.delete(`/api/products?id=${e._id}`);
 
+      const fetchProduct = async () => {
+        try {
+          const response = await axios.get(`/api/products?id=${id}`);
+
+          setData([...(response.data.products || [])]);
+        } catch (error) {
+          console.log("Failed in fetching user products and details : ", error);
+        }
+      };
+
+      fetchProduct();
     } catch (error) {
-      console.log("Failed in deleting product : ", e)
+      console.log("Failed in deleting product : ", e);
     }
-  }
+  };
 
   return (
     <>
@@ -77,7 +91,12 @@ const page = ({ props }) => {
         <div className="text-4xl text-[#e05548] font-semibold mt-4 mb-2">
           My Products
         </div>
-        <button className="bg-[#472307] px-4 py-2 rounded-lg mb-10 text-[#fff8e6]" onClick={() => { setModalOpen(!openmodal) }}>
+        <button
+          className="bg-[#472307] px-4 py-2 rounded-lg mb-10 text-[#fff8e6]"
+          onClick={() => {
+            setModalOpen(!openmodal);
+          }}
+        >
           Add New Item
         </button>
 
@@ -92,13 +111,14 @@ const page = ({ props }) => {
             onClick={() => setModalOpen(!openmodal)}
             className="rotate-45 absolute right-[20px] top-[20px] text-[#e05548]"
           />
-
-
         </motion.div>
 
         <div className="flex flex-row flex-wrap justify-evenly items-center  gap-10">
           {data.map((e) => (
-            <div key={e.id} className="rounded-lg w-75 bg-[#fff8e6] pb-3 shadow-xl">
+            <div
+              key={e.id}
+              className="rounded-lg w-75 bg-[#fff8e6] pb-3 shadow-xl"
+            >
               <img
                 src={e.image}
                 alt={e.name}
@@ -112,7 +132,9 @@ const page = ({ props }) => {
               </div>
               <div className="text-black font-semibold px-2">₹{e.price}</div>
               <button
-                onClick={() => { deleteProduct(e) }}
+                onClick={() => {
+                  deleteProduct(e);
+                }}
                 className=" mx-2 bg-red-600 text-white w-30 mt-2 rounded-lg py-1"
               >
                 Delete
