@@ -16,10 +16,10 @@ const ProductCard = ({ data }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.3 }}
-                className='bg-[#fff8e6] md:w-85 w-87 pb-5 min-h-115 flex flex-col justify-center shadow-2xl rounded-2xl'
+                className='bg-[#fff8e6] md:w-85 w-87 pb-5 min-h-100 flex flex-col justify-center shadow-2xl rounded-2xl'
             >
-                <img src={data.image} alt={data.name} className='w-full h-60  object-cover' />
-                <div className='text-2xl text-[#e05548] py-1 px-4 text-ellipsis h-15 mb-2'>{data.name}</div>
+                <img src={data.image} alt={data.name} className='w-full h-60  object-cover rounded-t-2xl' />
+                <div className='text-2xl text-[#e05548] py-1 px-4 text-ellipsis overflow-hidden h-8 mb-2'>{data.name}</div>
                 <div className='text-xl text-black px-4'>₹{data.price}</div>
                 <div className='text-md text-black py-1 px-4 h-20  text-ellipsis overflow-hidden'>
                     {data.description}

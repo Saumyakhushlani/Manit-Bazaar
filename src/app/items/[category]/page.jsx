@@ -29,7 +29,7 @@ const CategoryPage =  ({ params }) => {
   return (
     <>
       <NavbarDemo />
-      <div className="bg-[#f7edda] flex flex-col justify-center items-center md:py-22 md:px-10  py-15 px-4 min-h-screen">
+      <div className="bg-[#f7edda] flex flex-col justify-center items-center md:py-22 md:px-10  py-15 px-8 min-h-screen">
         <div className="text-[#e05548] md:text-5xl text-3xl font-semibold mb-5">
           Discover Amazing Items
         </div>
@@ -41,7 +41,7 @@ const CategoryPage =  ({ params }) => {
           Browse a wide range of products and find exactly what you need.
         </div>
 
-        <div className="flex flex-row flex-wrap md:gap-5 gap-10 px-2">
+        <div className="flex flex-row flex-wrap md:gap-5 gap-10 px-4">
           {products.map((e) => (
             <div key={e._id} className="">
               <ProductCard data={e} />
