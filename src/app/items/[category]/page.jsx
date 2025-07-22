@@ -41,7 +41,7 @@ const CategoryPage =  ({ params }) => {
           Browse a wide range of products and find exactly what you need.
         </div>
 
-        <div className="flex flex-row flex-wrap md:gap-5 gap-10">
+        <div className="flex flex-row flex-wrap md:gap-5 gap-10 px-2">
           {products.map((e) => (
             <div key={e._id} className="">
               <ProductCard data={e} />

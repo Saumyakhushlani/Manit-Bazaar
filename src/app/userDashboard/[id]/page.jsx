@@ -101,7 +101,7 @@ const page = ({ props }) => {
         </button>
 
         <motion.div
-          className="backdrop-blur-xl flex flex-row justify-center items-center w-full h-screen fixed overflow-x-hidden z-1000 inset-0 px-4"
+          className="backdrop-blur-xl flex flex-row justify-center items-center w-full h-screen fixed overflow-x-hidden z-1000 inset-0 "
           initial={{ translateX: "-100vw" }}
           animate={{ translateX: openmodal ? 0 : "-100vw" }}
           transition={{ duration: 0.4 }}

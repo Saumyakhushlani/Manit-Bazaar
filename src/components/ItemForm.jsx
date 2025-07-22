@@ -88,7 +88,7 @@ export default function ItemForm() {
   };
 
   return (
-    <div className="min-Contenth-screen flex items-center justify-center bg-[#f7edda] h-screen w-screen">
+    <div className="min-Contenth-screen flex items-center justify-center bg-[#f7edda] h-screen w-screen mx-2">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-[#e05548] p-8 rounded-3xl shadow-xl ring-1 ring-zinc-800 transition-all duration-300"
