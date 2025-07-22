@@ -13,6 +13,8 @@ const categories = [
 ];
 
 export default function ItemForm() {
+  const [loading , setLoading] = useState(false)
+  
   const [formData, setFormData] = useState({
     image: undefined,
     name: "",
@@ -32,7 +34,7 @@ export default function ItemForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+setLoading(true)
     const data = new FormData();
     data.append("image", formData.image); //  File object
 
@@ -63,6 +65,7 @@ export default function ItemForm() {
         );
 
         if (res.data.success) {
+          setLoading(false)
           alert("Product added!");
         } else {
           alert("Failed to add item");
@@ -86,6 +89,14 @@ export default function ItemForm() {
     
     document.getElementById("imageUpload").value = null;
   };
+if (loading) {
+  return (
+    <div className="flex items-center justify-center h-64">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-green-500"></div>
+    </div>
+  );
+}
+
 
   return (
     <div className="min-Contenth-screen flex items-center justify-center bg-[#f7edda] h-screen w-screen mx-2">

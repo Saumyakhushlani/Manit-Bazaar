@@ -4,7 +4,6 @@ import { motion } from "motion/react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { Toaster, toast } from "react-hot-toast"
-
 const Page = () => {
     const router = useRouter();
     const [formData, setFormData] = useState({
