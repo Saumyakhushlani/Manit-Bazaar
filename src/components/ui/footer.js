@@ -43,12 +43,12 @@ const Footer = () => {
           &copy; {new Date().getFullYear()} MANIT BAZAAR. All rights reserved.
         </p>
       </div>
-      <Aurora
+      {/* <Aurora
         colorStops={["#E05548", "#FFF8E6", "#FF2800"]}
         blend={0.5}
         amplitude={0.7}
         speed={0.5}
-      />
+      /> */}
     </footer>
   );
 };
