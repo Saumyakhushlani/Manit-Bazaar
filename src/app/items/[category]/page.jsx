@@ -29,15 +29,15 @@ const CategoryPage =  ({ params }) => {
   return (
     <>
       <NavbarDemo />
-      <div className="bg-[#f7edda] flex flex-col justify-center items-center py-22 px-10 min-h-screen">
-        <div className="text-[#e05548] text-5xl font-semibold mb-5">
+      <div className="bg-[#f7edda] flex flex-col justify-center items-center md:py-22 md:px-10  py-15 px-4 min-h-screen">
+        <div className="text-[#e05548] md:text-5xl text-3xl font-semibold mb-5">
           Discover Amazing Items
         </div>
-        <div className="text-black text-xl">
+        <div className="text-black md:text-xl text-lg">
           Find pre‑loved books, gadgets, hostel essentials, and more – all from
           fellow MANITians.
         </div>
-        <div className="text-black text-xl mb-6">
+        <div className="text-black md:text-xl text-lg mb-6">
           Browse a wide range of products and find exactly what you need.
         </div>
 

@@ -86,8 +86,8 @@ const categories = [
 export default function CategoryPage() {
   return (
     <>
-      <div className="min-h-screen bg-[#fff8e6] text-black px-4 py-20">
         <NavbarDemo />
+      <div className="min-h-screen bg-[#f7edda] text-black px-4 py-20">
         <h1 className="text-3xl md:text-4xl font-bold text-center mb-10 tracking-wide">
           Browse by <span className="text-[#e05548]">Category</span>
         </h1>

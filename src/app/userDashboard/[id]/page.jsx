@@ -76,16 +76,16 @@ const page = ({ props }) => {
       <div className="bg-[#f7edda] flex flex-col justify-center items-center py-15 md:px-10 px-5 overflow-x-hidden">
         <div className="flex md:flex-row flex-col justify-center items-center gap-10 bg-[#fff8e6] shadow-xl my-5 rounded-xl md:p-6 py-6 px-3">
           <img
-            src="https://avatar.iran.liara.run/public"
+            src="https://avatar.iran.liara.run/public/boy"
             alt={userData.name}
             className="w-40 h-40 rounded-full border-2 border-[#e05548] flex-1"
           />
           <div className="flex-3">
-            <div className="text-3xl text-[#e05548] font-semibold mb-2">
+            <div className="md:text-3xl text-2xl text-[#e05548] font-semibold mb-2">
               Name: {userData.name}
             </div>
-            <div className="text-xl text-black">Email: {userData.email}</div>
-            <div className="text-xl text-black">Phone: {userData.phone}</div>
+            <div className="md:text-xl text-lg text-black">Email: {userData.email}</div>
+            <div className="md:text-xl text-lg text-black">Phone: {userData.phone}</div>
           </div>
         </div>
         <div className="text-4xl text-[#e05548] font-semibold mt-4 mb-2">
@@ -101,7 +101,7 @@ const page = ({ props }) => {
         </button>
 
         <motion.div
-          className="backdrop-blur-xl flex flex-row justify-center items-center w-full h-screen fixed overflow-x-hidden z-1000 inset-0"
+          className="backdrop-blur-xl flex flex-row justify-center items-center w-full h-screen fixed overflow-x-hidden z-1000 inset-0 px-4"
           initial={{ translateX: "-100vw" }}
           animate={{ translateX: openmodal ? 0 : "-100vw" }}
           transition={{ duration: 0.4 }}
