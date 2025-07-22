@@ -5,7 +5,7 @@ import { uploadOnCloudinary } from "@/cloudinary/config"; // Ensure this path is
 
 // Best practice: Use process.cwd() for root path in Next.js
 // And ensure the directory exists before attempting to write.
-const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads");
+const UPLOAD_DIR = "/tmp"; 
 
 export async function POST(req) {
   try {
