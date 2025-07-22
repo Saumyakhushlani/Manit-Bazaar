@@ -83,7 +83,7 @@ export default function ItemForm() {
       price: "",
     });
 
-    // Clear file input manually
+    
     document.getElementById("imageUpload").value = null;
   };
 

@@ -40,7 +40,7 @@ const Page = () => {
             }else if(error.status === 403){
                 // toast.error("")
             }else {
-                console.log("Internal Server Error : ", error);
+               
                 toast.error("Error 500 : Internal Server Error")
 
             }

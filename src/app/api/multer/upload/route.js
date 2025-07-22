@@ -12,7 +12,7 @@ export async function POST(req) {
     const formData = await req.formData();
     const file = formData.get("image"); // Get the file directly using its name 'file' from formData
 
-    console.log()
+    
 
     if (!file) {
       return NextResponse.json(
