@@ -39,22 +39,35 @@ export default function NavbarDemo() {
 
         const response = await axios.get("/api/user/me")
         console.log(response)
-      setid(response?.data.userId)
+        setid(response?.data.userId)
       } catch (error) {
-        console.log("Not Logged In",error)
+        console.log("Not Logged In", error)
       }
-      
+
     }
     getuserid()
   }, [])
 
-  const router =useRouter()
-  const logoutuser = async()=>{
+  const getuserid = async () => {
+    try {
+
+      const response = await axios.get("/api/user/me")
+      console.log(response)
+      setid(response?.data.userId)
+    } catch (error) {
+      console.log("Not Logged In", error)
+    }
+
+  }
+
+
+  const router = useRouter()
+  const logoutuser = async () => {
     try {
       await axios.get('/api/user/logout')
       router.push('/')
     } catch (error) {
-      console.log("Error in Logout",error)
+      console.log("Error in Logout", error)
     }
   }
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -69,7 +82,12 @@ export default function NavbarDemo() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             {!id && <a href="/login"><NavbarButton variant="secondary">Login</NavbarButton></a>}
-            {id&& <button onClick={logoutuser}><NavbarButton variant="secondary">Logout</NavbarButton></button>}
+            {id && <button onClick={() => {
+              logoutuser()
+              getuserid()
+
+            }}>
+              <NavbarButton variant="secondary">Logout</NavbarButton></button>}
             <Link href={`/userDashboard/${id}`}><NavbarButton variant="primary">Dashboard</NavbarButton></Link>
           </div>
         </NavBody>
@@ -97,7 +115,7 @@ export default function NavbarDemo() {
             <div className="flex w-full flex-col gap-4">
 
 
-              {!id&&<Link href="/login">
+              {!id && <Link href="/login">
                 <NavbarButton
                   onClick={() => setIsMobileMenuOpen(false)}
                   variant="primary"
@@ -105,11 +123,13 @@ export default function NavbarDemo() {
                   Login
                 </NavbarButton>
               </Link>}
-              {id&&
+              {id &&
                 <NavbarButton
                   onClick={() => {
                     setIsMobileMenuOpen(false)
                     logoutuser()
+                    getuserid()
+
                   }}
                   variant="primary"
                   className="w-full">
