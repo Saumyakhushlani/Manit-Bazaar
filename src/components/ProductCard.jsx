@@ -110,7 +110,7 @@ const ProductCard = ({ data }) => {
                                         <h4 className='text-lg font-semibold text-[#351E11] mb-4'>Get in Touch</h4> {/* Dark text */}
 
                                         <a
-                                            href={`https://wa.me/${data.ownerDetails?.phone}?text=Hello! I'm interested in ${data.name}`}
+                                            href={`https://wa.me/+91${data.ownerDetails?.phone}?text=Hello! I'm interested in ${data.name}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="group bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-3 w-full py-4 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105"
