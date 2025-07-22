@@ -87,7 +87,7 @@ const page = () => {
     return (
         <>
             <NavbarDemo />
-            <div className='bg-[#fff8e6] flex flex-col justify-center items-center py-22 px-10'>
+            <div className='bg-[#fff8e6] flex flex-col justify-center items-center md:py-22 py-15 md:px-10 px-4'>
                 <div className='text-purple-500 text-5xl font-semibold mb-5'>Discover Amazing Items</div>
                 <div className='text-white text-xl'>Find pre‑loved books, gadgets, hostel essentials, and more – all from fellow MANITians.</div>
                 <div className='text-white text-xl mb-6'>Browse a wide range of products and find exactly what you need.</div>

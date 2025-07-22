@@ -97,15 +97,26 @@ export default function NavbarDemo() {
             <div className="flex w-full flex-col gap-4">
 
 
-              <Link href="/">
+              {!id&&<Link href="/login">
                 <NavbarButton
                   onClick={() => setIsMobileMenuOpen(false)}
                   variant="primary"
                   className="w-full">
                   Login
                 </NavbarButton>
-              </Link>
-              <Link href="{`/userDashboard/${id}`}">
+              </Link>}
+              {id&&
+                <NavbarButton
+                  onClick={() => {
+                    setIsMobileMenuOpen(false)
+                    logoutuser()
+                  }}
+                  variant="primary"
+                  className="w-full">
+                  Logout
+                </NavbarButton>
+              }
+              <Link href={`/userDashboard/${id}`}>
                 <NavbarButton
                   onClick={() => setIsMobileMenuOpen(false)}
                   variant="primary"
