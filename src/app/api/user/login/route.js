@@ -52,7 +52,7 @@ export async function POST(req) {
       });
 
       const response =await axios.post(
-        `https://erpapi.manit.ac.in/api/login`,
+        `${process.env.MANIT_ERP}/login`,
         { username, password },
         {
           httpsAgent: agent, // Use the custom agent to ignore SSL errors
