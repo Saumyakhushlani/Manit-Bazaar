@@ -21,7 +21,9 @@ const ProductCard = ({ data }) => {
                 <img src={data.image} alt={data.name} className='w-full h-60  object-cover' />
                 <div className='text-2xl text-[#e05548] py-1 px-4'>{data.name}</div>
                 <div className='text-xl text-black px-4'>₹{data.price}</div>
-                <div className='text-md text-black py-1 px-4'>{data.description}</div>
+                <div className='text-md text-black py-1 px-4 h-20 overflow-ellipsis'>
+                    {data.description}
+                </div>
                 <button
                     onClick={openModal}
                     className='w-1/2 py-1.5 mt-2 mx-4 bg-[#e05548] text-black font-sans font-semibold rounded-lg'
@@ -46,7 +48,7 @@ const ProductCard = ({ data }) => {
                             transition={{ type: "spring", stiffness: 300, damping: 30 }}
                             className='bg-[#FFF8E6] pb-3 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl' // Main background
                         >
-                            <div className='relative bg-[#E05548] p-2 text-white'> 
+                            <div className='relative bg-[#E05548] p-2 text-white'>
                                 <button
                                     onClick={closeModal}
                                     className='absolute top-4 right-4 p-2 hover:bg-white/20 rounded-full transition-colors duration-200'
