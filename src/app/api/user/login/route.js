@@ -67,8 +67,8 @@ export async function POST(req) {
 
       if (!user) {
         const newUser = await User.create({
-          name: response.data?.userInfo?.gecos.split(",,")[0],
-          phone: response.data?.userInfo?.gecos.split(",,")[1],
+          name: response.data?.userInfo?.studentInfo?.full_name,
+          phone: response.data?.userInfo?.studentInfo?.phone_number,
           email: `${username}@manit.ac.in`,
           profilePhoto: response.data?.userInfo?.photo,
         });
@@ -87,7 +87,7 @@ export async function POST(req) {
       return NextResponse.json({
         message: "Login Successful",
         user: {
-          name: response.data?.userInfo?.gecos.split(",,")[0],
+          name: response.data?.userInfo?.studentInfo?.full_name,
           email: `${username}@manit.ac.in`,
           profilePhoto: response.data?.userInfo?.photo,
         },
