@@ -10,6 +10,8 @@ const Page = () => {
         scholarNo: "",
         password: "",
     })
+    
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -26,7 +28,7 @@ const Page = () => {
 
             router.push("/")
             toast.success("Login Successfully");
-        } catch (error) {
+            localStorage.setItem("userInfo", JSON.stringify(response?.data?.user))
             if(error.status === 401){
                 toast.error("Username and Password required")
             }else if(error.status === 403){
@@ -37,6 +39,9 @@ const Page = () => {
 
             }
 
+        }
+        catch{
+            console.log("Error")
         }
     }
 

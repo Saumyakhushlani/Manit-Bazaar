@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import NavbarDemo from "@/components/Header";
-import { MdOutlineErrorOutline } from "react-icons/md";
 import Footer from "@/components/ui/footer";
 import { useParams } from "next/navigation";
 import axios from "axios";
@@ -31,23 +30,32 @@ const page = ({ props }) => {
       }
     };
 
-    const userdetails = async () => {
-      try {
-        const me = await axios.get("/api/user/me");
-        console.log(me);
-        setUserData({
-          name: me?.data.user.name,
-          email: me?.data.user.email,
-          phone: me?.data.user.phone,
-        });
-      } catch (error) {
-        console.log("Error in fetching user details : ", error);
-      }
-    };
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    console.log(userInfo)
+    setUserData({
+      name: userInfo.name,
+      email: userInfo.email,
+      phone: userInfo.phone,
+    });
 
-    userdetails();
+    // const userdetails = async () => {
+    //   try {
+    //     const me = await axios.get("/api/user/me");
+    //     console.log(me);
+    //     setUserData({
+    //       name: me?.data.user.name,
+    //       email: me?.data.user.email,
+    //       phone: me?.data.user.phone,
+    //     });
+    //   } catch (error) {
+    //     console.log("Error in fetching user details : ", error);
+    //   }
+    // };
+
+    // userdetails();
     fetchProduct();
     console.log(userData);
+    // console.log(userData);
   }, []);
 
   const deleteProduct = async (e) => {
@@ -84,8 +92,12 @@ const page = ({ props }) => {
             <div className="md:text-3xl text-2xl text-[#e05548] font-semibold mb-2">
               Name: {userData.name}
             </div>
-            <div className="md:text-xl text-lg text-black">Email: {userData.email}</div>
-            <div className="md:text-xl text-lg text-black">Phone: {userData.phone}</div>
+            <div className="md:text-xl text-lg text-black">
+              Email: {userData.email}
+            </div>
+            <div className="md:text-xl text-lg text-black">
+              Phone: {userData.phone}
+            </div>
           </div>
         </div>
         <div className="text-4xl text-[#e05548] font-semibold mt-4 mb-2">

@@ -48,18 +48,6 @@ export default function NavbarDemo() {
     getuserid()
   }, [])
 
-  const getuserid = async () => {
-    try {
-
-      const response = await axios.get("/api/user/me")
-      console.log(response)
-      setid(response?.data.userId)
-    } catch (error) {
-      console.log("Not Logged In", error)
-    }
-
-  }
-
 
   const router = useRouter()
   const logoutuser = async () => {

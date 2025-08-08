@@ -65,10 +65,12 @@ export async function POST(req) {
 
       const user = await User.findOne({ email: `${username}@manit.ac.in` });
 
+      console.log(response.data?.userInfo);
+      console.log(response.data?.userInfo?.studentInfo[0]?.phone_number);
       if (!user) {
         const newUser = await User.create({
-          name: response.data?.userInfo?.studentInfo?.full_name,
-          phone: response.data?.userInfo?.studentInfo?.phone_number,
+          name: response.data?.userInfo?.studentInfo[0]?.full_name,
+          phone: response.data?.userInfo?.studentInfo[0]?.phone_number,
           email: `${username}@manit.ac.in`,
           profilePhoto: response.data?.userInfo?.photo,
         });
@@ -87,7 +89,8 @@ export async function POST(req) {
       return NextResponse.json({
         message: "Login Successful",
         user: {
-          name: response.data?.userInfo?.studentInfo?.full_name,
+          name: response.data?.userInfo?.studentInfo[0]?.full_name,
+          phone: response.data?.userInfo?.studentInfo[0]?.phone_number,
           email: `${username}@manit.ac.in`,
           profilePhoto: response.data?.userInfo?.photo,
         },
